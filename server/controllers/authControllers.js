@@ -1,10 +1,11 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const {generateToken} = require('../config/jwt');
-const { response } = require('express');
+const { AUTH_MAX_AGE } = process.env;
 
 
-const signUp = async (req, res, next) => {
+
+const signUp = async (req, res) => {
     ///....new user sign-up
     const { firstName, lastName, email, password, profilePicture} = req.body;
     
@@ -34,22 +35,22 @@ const signUp = async (req, res, next) => {
         role: newUser.role,
         profilePicture: newUser.profilePicture
     };
-    const token = generateToken(payload);
+    const token = await generateToken(payload);
 
     res.cookie('token', token, {
-        httpOnly: true,
-        maxAge: 90000, //15ms
+        httpOnly: false,
+        maxAge: AUTH_MAX_AGE
     });
 
-    res.status(200).json(payload);
+    return res.status(200).json(payload);
 
-}  catch(error) {
-    next(error);
-}
+} catch(error) {
+    return res.status(400).json({ error: error });
+    }
 };
 
 
-const signIn = async (req, res, next) => {
+const signIn = async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -70,7 +71,7 @@ const signIn = async (req, res, next) => {
             return res.status(401).json({ error:'Invalid email or password'});
         }
         const payload = {
-            id: user._id,
+            id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             role: user.role,
@@ -78,23 +79,24 @@ const signIn = async (req, res, next) => {
         };
 
         const token = await generateToken(payload);
+
         res.cookie('token', token, {
-            httpOnly: true,
-            maxAge: 900000
+            httpOnly: false,
+            maxAge: AUTH_MAX_AGE,
         });
 
-        res.status(200).json({message: 'Signed in successfully'});
+        res.status(200).json(payload);
 
 
     } catch(error) {
-        res.status(400).json({error:'can not sign in'});
+        res.status(400).json({error: 'Cannot sign you in'});
         
     }
 
 }
 
-const signOut = async (req, res, next) => {
-  res.clearCookie('token');
+const signOut = (req,res) => {
+    res.clearCookie('token');
   res.status(200).json({message: 'Signed out successfully'});
 };
 

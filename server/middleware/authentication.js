@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 const {JWT_SECRET} = process.env;
 
 const authenticateUser = (req, res, next) => {
@@ -10,6 +11,7 @@ const authenticateUser = (req, res, next) => {
     try {
        const decoded =  jwt.verify(token,JWT_SECRET);
         req.user = decoded;
+
         next();
     } catch (error) {
 
@@ -18,7 +20,6 @@ const authenticateUser = (req, res, next) => {
 
 };
 
-'admin', authenticateUser, authorizeUser (['admin']), showAdminDashboard
 
 const authorizeUser = (roles) => {
 
@@ -31,4 +32,6 @@ const authorizeUser = (roles) => {
 
         next();
      }
-}
+};
+
+module.exports = {authenticateUser, authorizeUser};
