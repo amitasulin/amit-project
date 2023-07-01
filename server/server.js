@@ -14,7 +14,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 
-// Activate express 
+// Activate express
 const app = express();
 
 // user middlware
@@ -23,8 +23,8 @@ app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));
-app.use(express.static('static'));
+app.use(morgan("dev"));
+app.use(express.static("static"));
 
 //connect to database
 connectDatabase(); 
@@ -35,6 +35,7 @@ app.use(refreshAuthTokenCookie);
 //Routes
 app.use('/api/auth',authRoutes);
 app.use('/api/users',userRoutes);
+app.use("/api/strains", strainRoutes);
 
 
 // error handler middleware
@@ -42,7 +43,6 @@ app.use(errorHandler);
 
 //Start server
 const port = process.env.PORT || 5000;
-app.listen(port, ()=> {
-console.log(`Server running on port ${port}`);
-
-})
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
