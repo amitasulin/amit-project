@@ -9,10 +9,11 @@ const { connectDatabase } = require('./config/database');
 const {errorHandler} = require('./middleware/errorHandler');
 const { refreshAuthTokenCookie } = require('./config/jwt');
 
+
 // Required routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
-
+const strainRoutes = require('./routes/strainRoutes');
 
 // Activate express
 const app = express();

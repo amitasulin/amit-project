@@ -32,3 +32,5 @@ const authorizeUser = (roles) => {
     next();
   };
 };
+
+module.exports = {authenticateUser, authorizeUser};

@@ -2,8 +2,17 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const {generateToken} = require('../config/jwt');
 const { AUTH_MAX_AGE } = process.env;
+const Joi = require('joi');
 
 
+const authSchema = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(5).required(),
+    profilePicture: Joi.string().optional(),
+    role: Joi.string().optional().default('user').valid('user','admin')
+});
 
 const signUp = async (req, res) => {
     ///....new user sign-up

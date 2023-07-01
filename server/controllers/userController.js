@@ -2,6 +2,14 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
+const userSchema = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(5).optional(),
+    profilePicture: Joi.string().optional(),
+    role: Joi.string().optional().default('user').valid('user','admin')
+});
 
 
 const getAllUsers = async (req, res,next) => { 
@@ -47,14 +55,6 @@ const getUserById = async (req, res, next) => {
 const createUser = async (req, res, next) => { 
 // validation schema for user data
 
-const userSchema = Joi.object({
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(5).required(),
-    profilePicture: Joi.string().optional(),
-    role: Joi.string().optional().default('user').valid('user','admin')
-});
 
     try {
         const { error } = userSchema.validate (req.body);
@@ -96,9 +96,9 @@ const updateUser = async (req, res, next) => {
         }
 
         const { firstName, lastName, email, password, profilePicture, role } = req.body;
-
+        console.log(password);
         let updatedUser;
-        if (password!=='') {
+        if (!password) {
             const hashedPassword = await bcrypt.hash(password, 10);
             updatedUser = await User.findByIdAndUpdate(
                 req.params.id,
@@ -119,9 +119,9 @@ const updateUser = async (req, res, next) => {
                 {
                     firstName,
                     lastName,
-                    email,
-                    profilePicture,
-                    role
+                    email
+                    // profilePicture,
+                    // role
 
                 },
                 {new:true}
@@ -141,7 +141,7 @@ const updateUser = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res, next) => { 
-    try{
+    try {
     const deletedUser = await User.findByIdAndRemove(req.params.id).select('-password');
 
     if(!deleteUser) {
@@ -150,9 +150,10 @@ const deleteUser = async (req, res, next) => {
     return res.status(200).json({deleted: deletedUser});
 
     } catch(error) {
+        
         next(error);
 
-}
+    }
 };
 
 module.exports = {getAllUsers, getUserById, createUser, updateUser, deleteUser};
