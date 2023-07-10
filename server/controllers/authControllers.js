@@ -2,17 +2,6 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const {generateToken} = require('../config/jwt');
 const { AUTH_MAX_AGE } = process.env;
-const Joi = require('joi');
-
-
-const authSchema = Joi.object({
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(5).required(),
-    profilePicture: Joi.string().optional(),
-    role: Joi.string().optional().default('user').valid('user','admin')
-});
 
 const signUp = async (req, res) => {
     ///....new user sign-up
@@ -21,6 +10,7 @@ const signUp = async (req, res) => {
     try {
     //check if user already exists
     const existingUser = await User.findOne({email});
+    
     if (existingUser) {
         return res.status(409).json({error: 'User is already exists'});
     }
@@ -44,6 +34,7 @@ const signUp = async (req, res) => {
         role: newUser.role,
         profilePicture: newUser.profilePicture
     };
+
     const token = await generateToken(payload);
 
     res.cookie('token', token, {
@@ -53,7 +44,7 @@ const signUp = async (req, res) => {
 
     return res.status(200).json(payload);
 
-} catch(error) {
+    } catch(error) {
     return res.status(400).json({ error: error });
     }
 };
@@ -67,7 +58,6 @@ const signIn = async (req, res) => {
         const user = await User.findOne({ email }); 
         
         if (!user) {
-            
             return res.status(401).json({ error: 'Invalid email or password' });
         }
 
@@ -79,6 +69,7 @@ const signIn = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ error:'Invalid email or password'});
         }
+
         const payload = {
             id: user.id,
             firstName: user.firstName,
@@ -102,7 +93,7 @@ const signIn = async (req, res) => {
         
     }
 
-}
+};
 
 const signOut = (req,res) => {
     res.clearCookie('token');
@@ -110,3 +101,4 @@ const signOut = (req,res) => {
 };
 
 module.exports = { signUp, signOut, signIn };
+

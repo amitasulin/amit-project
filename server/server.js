@@ -14,12 +14,14 @@ const { refreshAuthTokenCookie } = require('./config/jwt');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const strainRoutes = require('./routes/strainRoutes');
+const strainListRoutes = require('./routes/strainListRoutes');
+
 
 // Activate express
 const app = express();
 
 // user middlware
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.json());
@@ -37,6 +39,7 @@ app.use(refreshAuthTokenCookie);
 app.use('/api/auth',authRoutes);
 app.use('/api/users',userRoutes);
 app.use("/api/strains", strainRoutes);
+app.use("/api/strain-list", strainListRoutes);
 
 
 // error handler middleware
