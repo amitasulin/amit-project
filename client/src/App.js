@@ -4,7 +4,6 @@ import Main from './layouts/main/Main';
 function App() {
   return (
     <div className="App">
-
       <Main/>
     </div>
   );
