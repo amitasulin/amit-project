@@ -117,3 +117,5 @@ const deleteById = async (req, res, next) => {
 //full create/read/update/delete
 
 module.exports = { create, getAll, getById, updateById, deleteById }
+
+

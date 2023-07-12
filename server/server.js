@@ -15,6 +15,8 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const strainRoutes = require('./routes/strainRoutes');
 const strainListRoutes = require('./routes/strainListRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
 
 
 // Activate express
@@ -40,7 +42,7 @@ app.use('/api/auth',authRoutes);
 app.use('/api/users',userRoutes);
 app.use("/api/strains", strainRoutes);
 app.use("/api/strain-list", strainListRoutes);
-
+app.use("/api/orders", orderRoutes);
 
 // error handler middleware
 app.use(errorHandler);
