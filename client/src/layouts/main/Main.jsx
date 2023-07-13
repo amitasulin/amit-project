@@ -1,15 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 
 //components
-import Footer from '../../Components/Footer/Footer'
-import Header from '../../Components/Header/Header'
+import Footer from '../../Components/Footer/Footer';
+import Header from '../../Components/Header/Header';
+import AllStrains from '../../Components/AllStrains/AllStrains';
 
 // Pages
-import HomePage from '../../Components/Pages/Home'
-import AgeRestriction from '../../Components/Pages/AgeRestriction'
-import ProductGallery from '../../Components/Pages/ProductGallery'
-import About from '../../Components/Pages/About'
+import HomePage from '../../Components/Pages/Home';
+import AgeRestriction from '../../Components/Pages/AgeRestriction';
+import About from '../../Components/Pages/About';
 import Error404Page from "../../Components/Pages/Error404Page";
+import Login from "../../Components/Pages/Login";
+
 
 export default function Main() {
   return (
@@ -18,8 +20,9 @@ export default function Main() {
     
     <Routes>
     <Route path="/" element={<HomePage/>} />
+    <Route path="/login" element={<Login/>} />
     <Route path="/test" element={<AgeRestriction/>} />
-    <Route path="/productGallery" element={<ProductGallery/>} />
+    <Route path="/strains" element={<AllStrains/>} />
     <Route path="/about" element={<About/>} />
     <Route path="*" element={<Error404Page/>} />
     </Routes>
