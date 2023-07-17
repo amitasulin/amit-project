@@ -11,6 +11,7 @@ import AgeRestriction from '../../Components/Pages/AgeRestriction';
 import About from '../../Components/Pages/About';
 import Error404Page from "../../Components/Pages/Error404Page";
 import Login from "../../Components/Pages/Login";
+import StrainDetailsPage from "../../Components/Pages/StrainDetailsPage";
 
 
 export default function Main() {
@@ -22,6 +23,7 @@ export default function Main() {
     <Route path="/" element={<HomePage/>} />
     <Route path="/login" element={<Login/>} />
     <Route path="/test" element={<AgeRestriction/>} />
+    <Route path="/strains/:strainId" element={<StrainDetailsPage/>} />
     <Route path="/strains" element={<AllStrains/>} />
     <Route path="/about" element={<About/>} />
     <Route path="*" element={<Error404Page/>} />
