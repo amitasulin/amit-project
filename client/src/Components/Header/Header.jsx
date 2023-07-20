@@ -1,5 +1,7 @@
 import React from 'react';
 import './Header.css'; // Import the CSS file for styling
+import ProfileIndicator from './ProfileIndicator/ProfileIndicator';
+
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -20,6 +22,7 @@ export default function Header() {
       </nav>
 
       <div className="user-profile">
+        <ProfileIndicator/>
       </div>
     </div>
   );

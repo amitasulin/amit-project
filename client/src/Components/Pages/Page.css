@@ -1,0 +1,20 @@
+.Page {
+    background-color:#ebebeb;
+    padding: 30px 0px 30px 0px;
+    min-height: calc(100vh - 390px);
+    padding: 40px 50px;
+}
+
+.Page .title {
+    font-weight: 300;
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.Page a {
+    color: #000000;
+    text-decoration: none;
+}
+.Page a:hover {
+    border-bottom: 1px solid rgb(155, 155, 155);
+}

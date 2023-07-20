@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {getStrainById} from '../../services/strainService';
 import './StrainDetails.css'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 
 
@@ -28,7 +29,8 @@ fetchStrain(strainId);
 },[strainId])
 
   return (
-    <div className='StrainDetails'>
+    <ProtectedRoute allowedRoles={['user', 'admin']}> 
+ <div className='StrainDetails'>
         {
             !strain 
             ? <div> Loading strain data, Please wait... </div>
@@ -44,5 +46,7 @@ fetchStrain(strainId);
         }
         
     </div>
+    </ProtectedRoute>
+   
   )
 }

@@ -12,6 +12,7 @@ import About from '../../Components/Pages/About';
 import Error404Page from "../../Components/Pages/Error404Page";
 import Login from "../../Components/Pages/Login";
 import StrainDetailsPage from "../../Components/Pages/StrainDetailsPage";
+import SignInPage from "../../Components/Pages/SignInPage";
 
 
 export default function Main() {
@@ -21,6 +22,7 @@ export default function Main() {
     
     <Routes>
     <Route path="/" element={<HomePage/>} />
+    <Route path="/signin" element={<SignInPage/>} />
     <Route path="/login" element={<Login/>} />
     <Route path="/test" element={<AgeRestriction/>} />
     <Route path="/strains/:strainId" element={<StrainDetailsPage/>} />

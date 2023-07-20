@@ -27,22 +27,24 @@ export const UserProvider = ({children})=> {
 
         };
         loadUserDataFromCookie();
-    })
+    }, []);
 
-    const signIn = async(email,passwords) => {
+    const signIn = async(email,password) => {
         const response = await http.post(
             'http://localhost:5000/api/auth/signin', 
-            {email: email, passwords: passwords }
+            {email: email, password: password }
             );
-            console.log(response);
+            setUserData(response.data);
+            setIsAuthenticated(true);
     }
 
-    const signOut = async(email,passwords) => {
-    
-    
+    const signOut = async() => {
+        Cookies.remove('token');
+        setUserData(null);
+        setIsAuthenticated(false);
     }
 
-    const signUp = async(email,passwords) => {
+    const signUp = async(email,password) => {
     
     
     }

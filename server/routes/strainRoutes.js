@@ -16,7 +16,7 @@ router.post("/", authenticateUser, authorizeUser(['admin']),create);
 //getAll
 router.get("/", getAll);
 //getById
-router.get("/:id", /*authenticateUser, authorizeUser(['user','admin'])*/ getById);
+router.get("/:id", authenticateUser, authorizeUser(['user','admin']), getById);
 //updateById
 router.put("/:id", authenticateUser, authorizeUser(['admin']), updateById);  
 //deleteById
