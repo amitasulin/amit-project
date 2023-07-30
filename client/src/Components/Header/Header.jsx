@@ -1,6 +1,6 @@
-import React from 'react';
-import './Header.css'; // Import the CSS file for styling
-import ProfileIndicator from './ProfileIndicator/ProfileIndicator';
+import React from "react";
+import "./Header.css"; // Import the CSS file for styling
+import ProfileIndicator from "./ProfileIndicator/ProfileIndicator";
 
 import { Link } from "react-router-dom";
 
@@ -15,14 +15,13 @@ export default function Header() {
 
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/signin">Sign In</Link>
         <Link to="/strains"> All Strains </Link>
         <Link to="/about"> About </Link>
-
       </nav>
 
       <div className="user-profile">
-        <ProfileIndicator/>
+        <ProfileIndicator />
       </div>
     </div>
   );
