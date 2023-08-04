@@ -23,7 +23,12 @@ const AgeRestriction = () => {
 
   return (
     <div>
-      <h1>Age Restriction</h1>
+      <h1>Age Restriction</h1> <br></br>
+      <p>
+        You must be 18 years of age or older to access this website and/or to
+        purchase non-medical cannabis. Products on this website will only be
+        delivered to addresses within the Province of Newfoundland and Labrador
+      </p>
       <label htmlFor="age-input">Enter your age:</label>
       <input
         id="age-input"

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import "./SignInForm.css";
 
 export default function SignInForm() {
   const navigate = useNavigate();
@@ -36,7 +37,6 @@ export default function SignInForm() {
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -48,12 +48,12 @@ export default function SignInForm() {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
-
-        <Link to="/signup">Not registered? Sign me up</Link>
-
-        <Button variant="primary" type="submit">
+        <Button className="submitButton" variant="primary" type="submit">
           Submit
-        </Button>
+        </Button>{" "}
+        <br></br>
+        <br></br>
+        <Link to="/signup">Not registered? Sign me up</Link>
       </Form>
     </div>
   );

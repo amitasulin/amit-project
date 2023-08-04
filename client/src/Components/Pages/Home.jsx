@@ -3,14 +3,9 @@ import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import ProductSlider from "./ProductSliderApp";
 import "./Home.css";
 
-const imageBackground = () => {
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Cannabis_sativa_001.JPG/1200px-Cannabis_sativa_001.JPG";
-};
-imageBackground();
 const Home = () => {
   return (
     <Container className="Container">
-      <ProductSlider></ProductSlider>
       <Row className="mt-5">
         <Col md={6}>
           <Image
@@ -20,6 +15,9 @@ const Home = () => {
         </Col>
         <Col md={6} className="d-flex align-items-center">
           <div>
+            <br></br>
+            <br></br>
+
             <h1>Welcome to Our Online Store!</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut
@@ -31,6 +29,10 @@ const Home = () => {
           </div>
         </Col>
       </Row>
+
+      <br></br>
+
+      <ProductSlider></ProductSlider>
     </Container>
   );
 };

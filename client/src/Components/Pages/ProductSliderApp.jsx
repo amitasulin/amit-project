@@ -26,13 +26,25 @@ const products = [
     price: "$25.99",
     image: "https://images.leafly.com/flower-images/sour-diesel.jpg",
   },
-  // Add more products here...
+
+  {
+    name: "Gelato",
+    type: "Hybrid",
+    price: "$15.99",
+    image: "https://images.leafly.com/flower-images/gelato.jpg",
+  },
+  {
+    name: "Purple Punch",
+    type: "Indica",
+    price: "$26.99",
+    image: "https://images.leafly.com/flower-images/purple-punch-fixed.jpg",
+  },
 ];
 
 const ProductSliderApp = () => {
   return (
     <div>
-      <h2>Hot strains</h2>
+      <h2>Best Sellers - Last Month </h2>
       <ProductSlider products={products} />
     </div>
   );

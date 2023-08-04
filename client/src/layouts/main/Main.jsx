@@ -8,7 +8,7 @@ import AllStrains from "../../Components/AllStrains/AllStrains";
 // Pages
 import HomePage from "../../Components/Pages/Home";
 import AgeRestriction from "../../Components/Pages/AgeRestriction";
-import About from "../../Components/Pages/About";
+import ContactUs from "../../Components/Pages/ContactUs";
 import Error404Page from "../../Components/Pages/Error404Page";
 import StrainDetailsPage from "../../Components/Pages/StrainDetailsPage";
 import SignInPage from "../../Components/Pages/SignInPage";
@@ -27,7 +27,7 @@ export default function Main() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/strains/:strainId" element={<StrainDetailsPage />} />
         <Route path="/strains" element={<AllStrains />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/contactus" element={<ContactUs />} />
         <Route path="*" element={<Error404Page />} />
       </Routes>
 
