@@ -13,7 +13,7 @@ export default function AllStrains() {
         {!strains
           ? "Loading strains, please wait..."
           : strains.map((strain) => (
-              <Col>
+              <Col key={strain._id}>
                 <Card style={{ width: "18rem" }}>
                   <Card.Img
                     variant="top"

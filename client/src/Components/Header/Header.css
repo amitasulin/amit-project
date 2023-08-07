@@ -1,31 +1,11 @@
 .Header {
   background-color: #26a550;
   color: white;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 50px;
-  padding-right: 50px;
-  align-items: center;
-  height: 80px;
 }
 
 .Header .logo {
   font-size: 1.25rem;
-}
-.logo .watch {
-  font-weight: 300;
-}
-.logo .next {
-  font-weight: 100;
-}
-
-.Header nav{
-  display: flex;
-  gap:50px;
-}
-
-.Header .user-profile {
-  text-align: right;
+  text-align: center;
 }
 
 .Header a {
@@ -36,3 +16,5 @@
 .Header a:hover {
   font-weight: 300;
 }
+
+

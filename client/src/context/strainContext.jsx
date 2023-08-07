@@ -6,18 +6,20 @@ export const StrainContext = createContext();
 export const StrainProvider = ({ children }) => {
   const [strains, setStrains] = useState([]);
 
+  const fetchAllStrains = async (search = "") => {
+    console.log("Fetching strains...");
+    const response = await getAllStrains({ search });
+    const strainsArray = response.data.data;
+    setStrains(strainsArray);
+    console.log("Fetched strains...");
+  };
+
   useEffect(() => {
-    const fetchAllStrains = async () => {
-      const response = await getAllStrains();
-      const strainsArray = response.data.data;
-      setStrains(strainsArray);
-    };
-    console.log("Provider has strains");
     fetchAllStrains();
   }, []);
 
   return (
-    <StrainContext.Provider value={{ strains }}>
+    <StrainContext.Provider value={{ strains, fetchAllStrains }}>
       {children}
     </StrainContext.Provider>
   );

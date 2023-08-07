@@ -1,32 +1,79 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import "./Header.css";
 import ProfileIndicator from "./ProfileIndicator/ProfileIndicator";
 
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { StrainContext } from "../../context/strainContext";
 
 export default function Header() {
   const { isLoggedIn } = useContext(UserContext);
+  const { fetchAllStrains } = useContext(StrainContext);
+
+  const searchRef = useRef();
 
   return (
     <div className="Header">
-      <div className="logo">
-        <span className="Amit"> Amit </span>
-        🌱
-        <span className="Cannabis shop"> Cannabis shop </span>
-      </div>
+      <Row style={{ padding: "20px 0px", justifyContent: "space-between" }}>
+        <Col
+          style={{
+            margin: "auto",
+            maxWidth: "240px",
+          }}
+          lg
+        >
+          <div className="logo">
+            <span> Amit </span>
+            🌱
+            <span> Cannabis shop </span>
+          </div>
+        </Col>
+        <Col
+          style={{
+            margin: "auto",
+            justifyContent: "space-around",
+            display: "flex",
+            maxWidth: "500px",
+          }}
+          lg
+        >
+          <Link to="/">Home</Link>
+          <Link to="/strains">Products</Link>
+          <Link to="/strains">Users</Link>
+          <Link to="/contactus">Contact Us</Link>
+        </Col>
 
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/strains"> Products </Link>
-        <Link to="/contactus"> Contact Us </Link>
+        <Col
+          style={{
+            margin: "auto",
+            maxWidth: "400px",
+          }}
+          lg
+        >
+          <Form className="d-flex">
+            <Form.Control
+              ref={searchRef}
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button
+              onClick={() => fetchAllStrains(searchRef.current.value)}
+              variant="primary"
+            >
+              Search
+            </Button>
+          </Form>
+        </Col>
 
-        {isLoggedIn ? null : <Link to="/signin">Sign In</Link>}
-      </nav>
+        <Col style={{ margin: "auto", maxWidth: "400px" }} lg>
+          {isLoggedIn ? null : <Link to="/signin">Sign In</Link>}
 
-      <div className="user-profile">
-        <ProfileIndicator />
-      </div>
+          <ProfileIndicator />
+        </Col>
+      </Row>
     </div>
   );
 }
