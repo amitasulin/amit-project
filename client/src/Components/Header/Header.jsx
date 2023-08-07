@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import "./Header.css";
 import ProfileIndicator from "./ProfileIndicator/ProfileIndicator";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
@@ -11,7 +11,14 @@ export default function Header() {
   const { isLoggedIn } = useContext(UserContext);
   const { fetchAllStrains } = useContext(StrainContext);
 
+  const navigate = useNavigate();
+
   const searchRef = useRef();
+
+  const onSearch = async () => {
+    await fetchAllStrains(searchRef.current.value);
+    navigate("/strains");
+  };
 
   return (
     <div className="Header">
@@ -51,7 +58,13 @@ export default function Header() {
           }}
           lg
         >
-          <Form className="d-flex">
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              onSearch();
+            }}
+            className="d-flex"
+          >
             <Form.Control
               ref={searchRef}
               type="search"
@@ -59,10 +72,7 @@ export default function Header() {
               className="me-2"
               aria-label="Search"
             />
-            <Button
-              onClick={() => fetchAllStrains(searchRef.current.value)}
-              variant="primary"
-            >
+            <Button onClick={onSearch} variant="primary">
               Search
             </Button>
           </Form>

@@ -17,7 +17,7 @@ const strainSchema = Joi.object({
 
 const getAll = async (req, res, next) => {
   try {
-    const { page = 1, limit = 25, search } = req.query;
+    const { page = 1, limit = 12, search = "" } = req.query;
 
     if (limit > 50) limit = 50;
 

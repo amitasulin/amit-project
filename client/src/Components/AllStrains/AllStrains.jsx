@@ -2,14 +2,32 @@ import React, { useContext } from "react";
 import "./AllStrains.css";
 import { StrainContext } from "../../context/strainContext";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import Pagination from "react-bootstrap/Pagination";
 
 export default function AllStrains() {
-  const { strains } = useContext(StrainContext);
+  const { strains, page, totalPages, fetchAllStrains } =
+    useContext(StrainContext);
+
+  const items = [];
+  for (let number = 1; number <= totalPages; number++) {
+    items.push(
+      <Pagination.Item
+        onClick={() => fetchAllStrains("", number)}
+        key={number}
+        active={number === page}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
 
   return (
     <Container>
       <Row>
         <h1> All Strains</h1>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Pagination>{items}</Pagination>
+        </div>
         {!strains
           ? "Loading strains, please wait..."
           : strains.map((strain) => (
@@ -48,6 +66,9 @@ export default function AllStrains() {
                 </Card>
               </Col>
             ))}
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Pagination>{items}</Pagination>
+        </div>
       </Row>
     </Container>
   );
