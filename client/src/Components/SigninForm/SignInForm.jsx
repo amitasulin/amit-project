@@ -24,7 +24,7 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="SignInForm">
+    <div className="signInForm">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>

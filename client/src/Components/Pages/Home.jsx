@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
-import ProductSlider from "./ProductSliderApp";
+import ProductSlider from "./ProductSlider";
 import "./Home.css";
 
 const Home = () => {

@@ -3,10 +3,21 @@ const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 
 const orderSchema = new mongoose.Schema({
-  products: String,
-  quantity: Number,
-  description: String,
-  datetime: String,
+  cart: {
+    type: [
+      {
+        strainId: { type: mongoose.Types.ObjectId, ref: "Strain" },
+        quantity: Number,
+      },
+    ],
+    required: true,
+  },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  createdAt: Date,
 });
 
 orderSchema.plugin(mongoosePaginate);

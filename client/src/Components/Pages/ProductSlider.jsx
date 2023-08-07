@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Carousel } from "react-bootstrap";
-import ".//../Pages/ProductSlider.css";
-const ProductSlider = ({ products }) => {
+import "./ProductSlider.css";
+import { StrainContext } from "../../context/strainContext";
+const ProductSlider = () => {
+  const { strains } = useContext(StrainContext);
+
   return (
-    <Carousel>
-      {products.map((product, index) => (
+    <Carousel style={{ color: "black", flex: 1, display: "flex" }}>
+      {strains.map((product, index) => (
         <Carousel.Item key={index}>
-          <img className="image" src={product.image} alt={product.name} />
+          <img className="image" src={product.img_url} alt={product.name} />
           <Carousel.Caption>
             <h3>{product.name}</h3>
             <p>{product.type}</p>
-            <p>{product.price}</p>
+            <p>{product.thcLevel}</p>
           </Carousel.Caption>
         </Carousel.Item>
       ))}

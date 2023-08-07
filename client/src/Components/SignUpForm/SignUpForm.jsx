@@ -26,7 +26,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="SignUpForm">
+    <div className="signUpForm">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-3" controlId="formBasicFirstName">
           <Form.Label>First Name</Form.Label>

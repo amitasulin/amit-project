@@ -1,43 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./AllStrains.css";
-import { getAllStrains } from "../../services/strainService";
-import { Link } from "react-router-dom";
+import { StrainContext } from "../../context/strainContext";
+import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 
 export default function AllStrains() {
-  const [strains, setStrains] = useState(null);
-
-  useEffect(() => {
-    const fetchAllStrains = async () => {
-      const response = await getAllStrains();
-      const strainsArray = response.data.data;
-      setStrains(strainsArray);
-    };
-    fetchAllStrains();
-  }, []);
+  const { strains } = useContext(StrainContext);
 
   return (
-    <div className="AllStrains">
-      <h1> All Strains</h1>
-      {!strains ? (
-        "Loading strains, please wait..."
-      ) : (
-        <React.Fragment>
-          <ul>
-            {strains.map((strain) => (
-              <Link key={strain._id} to={`/strains/${strain._id}`}>
-                <li>
-                  <img
-                    className="poster"
-                    src={strain.img_url}
-                    alt="strain poster"
+    <Container>
+      <Row>
+        <h1> All Strains</h1>
+        {!strains
+          ? "Loading strains, please wait..."
+          : strains.map((strain) => (
+              <Col>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img
+                    variant="top"
+                    src={
+                      strain.img_url ||
+                      "https://images.leafly.com/flower-images/gsc.png"
+                    }
                   />
-                  <div className="strain-name">{strain.name}</div>
-                </li>
-              </Link>
+                  <Card.Body>
+                    <Card.Title>{strain.name}</Card.Title>
+                    <Card.Text
+                      style={{
+                        overflow: "hidden",
+                        height: "100px",
+                      }}
+                    >
+                      {strain.description}
+                    </Card.Text>
+                  </Card.Body>
+                  <ListGroup className="list-group-flush">
+                    <ListGroup.Item>{strain.price + "$"}</ListGroup.Item>
+                    <ListGroup.Item>{strain.type}</ListGroup.Item>
+                    <ListGroup.Item>{strain.thcLevel}</ListGroup.Item>
+                  </ListGroup>
+                  <Card.Body>
+                    <Card.Link href={`/strains/${strain._id}`}>
+                      More Info
+                    </Card.Link>
+                    <Card.Link href="#">Add to wishlist</Card.Link>
+                    <Card.Link href="#">Add to cart</Card.Link>
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-          </ul>
-        </React.Fragment>
-      )}
-    </div>
+      </Row>
+    </Container>
   );
 }
