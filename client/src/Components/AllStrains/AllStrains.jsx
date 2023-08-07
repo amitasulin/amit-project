@@ -33,13 +33,7 @@ export default function AllStrains() {
           : strains.map((strain) => (
               <Col key={strain._id}>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img
-                    variant="top"
-                    src={
-                      strain.img_url ||
-                      "https://images.leafly.com/flower-images/gsc.png"
-                    }
-                  />
+                  <Card.Img variant="top" src={strain.img_url} />
                   <Card.Body>
                     <Card.Title>{strain.name}</Card.Title>
                     <Card.Text

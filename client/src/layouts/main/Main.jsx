@@ -8,14 +8,14 @@ import AllStrains from "../../Components/AllStrains/AllStrains";
 // Pages
 import HomePage from "../../Components/Pages/Home";
 import AgeRestriction from "../../Components/Pages/AgeRestriction";
-import ContactUs from "../../Components/Pages/ContactUs";
 import Error404Page from "../../Components/Pages/Error404Page";
 import StrainDetailsPage from "../../Components/Pages/StrainDetailsPage";
 import SignInPage from "../../Components/Pages/SignInPage";
 import SignUpPage from "../../Components/Pages/SignUpPage";
 import "bootstrap/dist/css/bootstrap.css";
+import ContactForm from "../../Components/ContactUs/ContactForm";
+
 export default function Main() {
-  // const isNotFirstEntrance = localStorage.getItem("isFirstEntrance");
   return (
     <div className="Main">
       <Header />
@@ -27,7 +27,7 @@ export default function Main() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/strains/:strainId" element={<StrainDetailsPage />} />
         <Route path="/strains" element={<AllStrains />} />
-        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/contactus" element={<ContactForm />} />
         <Route path="*" element={<Error404Page />} />
       </Routes>
 
