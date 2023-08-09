@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import "./Home.css";
 
@@ -15,11 +15,8 @@ const Home = () => {
         </Col>
         <Col md={6} className="d-flex align-items-left">
           <div>
-            <br></br>
-            <br></br>
-
             <h1>
-              Welcome to Our Online Store!{" "}
+              Welcome to Our Online Store!
               <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cannabis_leaf.svg/120px-Cannabis_leaf.svg.png"></Image>
             </h1>
             <p>
@@ -36,18 +33,16 @@ const Home = () => {
               states of mind and sense of time, difficulty concentrating,
               impaired short-term memory, impaired body movement (balance and
               fine psychomotor control), relaxation, and an increase in
-              appetite.{" "}
+              appetite.
             </p>
             <p>
-              {" "}
               Onset of effects is felt within minutes when smoked, but may take
               up to 90 minutes when eaten. The effects last for two to six
               hours, depending on the amount used. At high doses, mental effects
               can include anxiety, delusions (including ideas of reference),
-              hallucinations, panic, paranoia, and psychosis.{" "}
+              hallucinations, panic, paranoia, and psychosis.
             </p>
             <p>
-              {" "}
               There is a strong relation between cannabis use and the risk of
               psychosis, though the direction of causality is debated. Physical
               effects include increased heart rate, difficulty breathing,
@@ -58,9 +53,6 @@ const Home = () => {
               regular use as adolescents, chronic coughing, susceptibility to
               respiratory infections, and cannabinoid hyperemesis syndrome.
             </p>
-            <Button variant="primary" linl>
-              Shop Now
-            </Button>
           </div>
         </Col>
       </Row>

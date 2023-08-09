@@ -3,6 +3,7 @@ import React from "react";
 import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+
 export default function ProtectedRoute(props) {
   const { allowedRoles } = props;
   const { isLoggedIn, userData } = useContext(UserContext);

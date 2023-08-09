@@ -78,8 +78,8 @@ const seedAll = async () => {
   });
 
   // Run the seeding functions
-  /*     await seedUsers();
-   */ await seedStrains();
+  await seedUsers();
+  await seedStrains();
 
   // Finish the seeding functions
   console.log("Done seeding");

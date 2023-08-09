@@ -4,7 +4,7 @@ import ProfileIndicator from "./ProfileIndicator/ProfileIndicator";
 
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
 
 export default function Header() {
@@ -47,7 +47,7 @@ export default function Header() {
         >
           <Link to="/">Home</Link>
           <Link to="/strains">Products</Link>
-          <Link to="/strains">Users</Link>
+          <Link to="/users">Users</Link>
           <Link to="/contactus">Contact Us</Link>
         </Col>
 
