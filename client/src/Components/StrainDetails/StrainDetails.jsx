@@ -33,9 +33,14 @@ export default function StrainDetails(props) {
         ) : (
           <React.Fragment>
             <img className="poster" src={strain.img_url} alt="strain poster" />
-            <div>Name: {strain.name}</div>
-            <div>Type: {strain.type}</div>
-            <div>ID: {strain._id}</div>
+            <div className="details">
+              <div>Name: {strain.name}</div>
+              <div>Type: {strain.type}</div>
+              <div>Most Common Terpene: {strain.most_common_terpene}</div>
+              <div>Thc Level: {strain.thcLevel}</div>
+              <div>Price: {strain.price + "$"}</div>
+              <div>ID: {strain._id}</div>
+            </div>
           </React.Fragment>
         )}
       </div>

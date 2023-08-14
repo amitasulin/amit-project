@@ -2,23 +2,23 @@ import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import "./Home.css";
-
 const Home = () => {
   return (
     <Container className="Container">
       <Row className="mt-5">
-        <Col md={6}>
+        <Col md={4}>
           <Image
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStc_DRIPwmjeiIAXqCglqvDe0OYkKh5YncNmU5vTApAly0E3yuhL2XEx4IYBO0IPy8PB8&usqp=CAU"
             fluid
           />
         </Col>
-        <Col md={6} className="d-flex align-items-left">
+        <Col md={8} className="d-flex align-items-left">
           <div>
             <h1>
               Welcome to Our Online Store!
               <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cannabis_leaf.svg/120px-Cannabis_leaf.svg.png"></Image>
             </h1>
+
             <p>
               Cannabis, also known as marijuana among other names, is a
               psychoactive drug from the cannabis plant. Native to Central or

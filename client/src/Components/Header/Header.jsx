@@ -49,6 +49,7 @@ export default function Header() {
           <Link to="/strains">Products</Link>
           <Link to="/users">Users</Link>
           <Link to="/contactus">Contact Us</Link>
+          {/* <Link to="/cart">Cart</Link> */}
         </Col>
 
         <Col

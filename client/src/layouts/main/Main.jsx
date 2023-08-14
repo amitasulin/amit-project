@@ -14,24 +14,34 @@ import SignInPage from "../../Components/Pages/SignInPage";
 import SignUpPage from "../../Components/Pages/SignUpPage";
 import "bootstrap/dist/css/bootstrap.css";
 import ContactForm from "../../Components/ContactUs/ContactForm";
+import Layout from "../../Components/Pages/Layout";
+import ShippingAndReturnPolicy from "../../Components/Pages/ShippingAndReturnPolicy";
+import FAQ from "../../Components/Pages/FAQ";
 
 export default function Main() {
   return (
     <div className="Main">
-      <Header />
+      <Layout>
+        <Header />
 
-      <Routes>
-        <Route path="/test" element={<AgeRestriction />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signin" element={<SignInPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/strains/:strainId" element={<StrainDetailsPage />} />
-        <Route path="/strains" element={<AllStrains />} />
-        <Route path="/contactus" element={<ContactForm />} />
-        <Route path="*" element={<Error404Page />} />
-      </Routes>
-
-      <Footer />
+        <Routes>
+          <Route path="/test" element={<AgeRestriction />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/strains/:strainId" element={<StrainDetailsPage />} />
+          <Route path="/strains" element={<AllStrains />} />
+          <Route path="/contactus" element={<ContactForm />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
+          <Route path="*" element={<Error404Page />} />
+          <Route
+            path="/shippingAndReturnPolicy"
+            element={<ShippingAndReturnPolicy />}
+          />
+          <Route path="/FAQ" element={<FAQ />} />
+        </Routes>
+        <Footer />
+      </Layout>
     </div>
   );
 }

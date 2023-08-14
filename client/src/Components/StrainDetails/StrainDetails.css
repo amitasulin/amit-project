@@ -3,5 +3,12 @@
 .StrainDetails .poster {
     width: 200px;
     padding: 20px;
+    
 }
 
+.details {
+    background-color: rgba(245, 245, 245, 0.5);
+    width: 250px;
+    text-align: center;
+    margin: auto;
+}
