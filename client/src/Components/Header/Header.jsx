@@ -45,6 +45,7 @@ export default function Header() {
             maxWidth: "500px",
           }}
           lg
+          className="d-none d-md-block"
         >
           <Link to="/">Home</Link>
           <Link to="/strains">Products</Link>
@@ -83,7 +84,11 @@ export default function Header() {
           </Form>
         </Col>
 
-        <Col style={{ margin: "auto", maxWidth: "400px" }} lg>
+        <Col
+          className="d-none d-md-block"
+          style={{ margin: "auto", maxWidth: "400px" }}
+          lg
+        >
           {isLoggedIn ? null : <Link to="/signin">Sign In</Link>}
 
           <ProfileIndicator />
