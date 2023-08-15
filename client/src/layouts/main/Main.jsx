@@ -20,6 +20,7 @@ import FAQ from "../../Components/Pages/FAQ";
 import NewStrain from "../../Components/NewStrain/NewStrain";
 import Users from "../../Components/Users/Users";
 import Wishlist from "../../Components/Wishlist/Wishlist";
+import { MobileMenu } from "../../Components/MobileMenu/MobileMenu";
 
 export default function Main() {
   const isAllowed = localStorage.getItem("isAllowed");
@@ -28,6 +29,7 @@ export default function Main() {
     <div className="Main">
       <Layout>
         <Header />
+        <MobileMenu />
         <div style={{ border: "1px solid blue", display: "flex", flex: 1 }}>
           <Routes>
             <Route

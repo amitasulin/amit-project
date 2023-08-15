@@ -6,10 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
+import { AppContext } from "../../context/appContext";
 
 export default function Header() {
   const { isLoggedIn, userData } = useContext(UserContext);
   const { fetchAllStrains } = useContext(StrainContext);
+  const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
 
   const navigate = useNavigate();
   const searchRef = useRef();
@@ -47,6 +49,9 @@ export default function Header() {
           <Link to="/">Home</Link>
           <Link to="/strains">Products</Link>
           <Link to="/users">Users</Link>
+          <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
+            Ham
+          </button>
           <Link to="/contactus">Contact Us</Link>
           {/* <Link to="/cart">Cart</Link> */}
         </Col>

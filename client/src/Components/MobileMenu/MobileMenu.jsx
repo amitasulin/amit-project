@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { AppContext } from "../../context/appContext";
 
-function Example() {
-  const [show, setShow] = useState(false);
+function MobileMenu() {
+  const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShowMobileMenu(false);
+  const handleShow = () => setShowMobileMenu(true);
 
   return (
     <>
@@ -14,7 +15,7 @@ function Example() {
         Launch
       </Button>
 
-      <Offcanvas show={show} onHide={handleClose}>
+      <Offcanvas show={showMobileMenu} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
@@ -27,4 +28,4 @@ function Example() {
   );
 }
 
-export default Example;
+export { MobileMenu };
