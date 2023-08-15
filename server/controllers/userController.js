@@ -82,7 +82,7 @@ const toggleWishlist = async (req, res, next) => {
   const wishlist = userFound.wishlist;
 
   if (wishlist.includes(strainId)) {
-    let newWishlist = wishlist.filter((strain) => strain.id === strainId);
+    let newWishlist = wishlist.filter((strain) => !strain._id.equals(strainId));
     userFound.wishlist = newWishlist;
   } else {
     let newWishlist = [...wishlist, strainId];
