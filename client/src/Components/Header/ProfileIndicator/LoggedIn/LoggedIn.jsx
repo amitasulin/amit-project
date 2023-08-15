@@ -21,6 +21,14 @@ export default function LoggedIn() {
         Orders
         <i style={{ marginLeft: "6px" }} className="bi bi-list-check"></i>
       </Link>
+      <Link to="/wishlist">
+        Wishlist
+        <i
+          style={{ marginLeft: "6px" }}
+          className="bi bi-person-lines-fill
+"
+        ></i>
+      </Link>
       <Button onClick={() => signOut()} variant="danger">
         Sign out
         <i

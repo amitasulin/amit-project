@@ -9,12 +9,14 @@ const {
   toggleWishlist,
   addToCart,
   removeFromCart,
+  getData,
 } = require("../controllers/userController");
 const {
   authenticateUser,
   authorizeUser,
 } = require("../middleware/authentication");
 
+router.get("/userData", authenticateUser, getData);
 router.get("/", authenticateUser, authorizeUser(["admin"]), getAllUsers);
 router.get("/:id", authenticateUser, authorizeUser(["admin"]), getUserById);
 router.post("/", authenticateUser, authorizeUser(["admin"]), createUser);

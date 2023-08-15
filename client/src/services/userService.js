@@ -23,3 +23,8 @@ export async function addToCart(params) {
   const response = http.post(`http://localhost:5000/api/users/cart/`, params);
   return response;
 }
+
+export async function getData() {
+  const response = http.get(`http://localhost:5000/api/users/userData/`);
+  return response;
+}

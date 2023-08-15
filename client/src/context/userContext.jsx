@@ -25,6 +25,7 @@ export const UserProvider = ({ children }) => {
       email,
       password,
     });
+    console.log(response.data);
     setUserData(response.data);
   };
 

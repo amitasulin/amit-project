@@ -2,6 +2,28 @@ const Joi = require("joi");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
+const getData = async (req, res) => {
+  const user = req.user;
+  try {
+    // check if user exist in db
+    const userFound = await User.findById(user.id).populate("wishlist");
+
+    const payload = {
+      id: userFound.id,
+      firstName: userFound.firstName,
+      lastName: userFound.lastName,
+      role: userFound.role,
+      profilePicture: userFound.profilePicture,
+      wishlist: userFound.wishlist,
+      cart: userFound.cart,
+    };
+
+    res.status(200).json(payload);
+  } catch (error) {
+    res.status(400).json({ error: "Cannot sign you in" });
+  }
+};
+
 const addToCart = async (req, res, next) => {
   const params = req.params;
 
@@ -231,4 +253,5 @@ module.exports = {
   toggleWishlist,
   addToCart,
   removeFromCart,
+  getData,
 };

@@ -19,6 +19,7 @@ import ShippingAndReturnPolicy from "../../Components/Pages/ShippingAndReturnPol
 import FAQ from "../../Components/Pages/FAQ";
 import NewStrain from "../../Components/NewStrain/NewStrain";
 import Users from "../../Components/Users/Users";
+import Wishlist from "../../Components/Wishlist/Wishlist";
 
 export default function Main() {
   return (
@@ -37,6 +38,8 @@ export default function Main() {
           <Route path="/users" element={<Users />} />
           <Route path="/cart" element={<NewStrain />} />
           <Route path="/orders" element={<NewStrain />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+
           <Route path="/contactus" element={<ContactForm />} />
           {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="*" element={<Error404Page />} />

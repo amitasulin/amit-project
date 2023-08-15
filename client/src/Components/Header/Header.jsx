@@ -8,11 +8,10 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
 
 export default function Header() {
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, userData } = useContext(UserContext);
   const { fetchAllStrains } = useContext(StrainContext);
 
   const navigate = useNavigate();
-
   const searchRef = useRef();
 
   const onSearch = async () => {
