@@ -13,8 +13,8 @@ const AgeRestriction = () => {
   const handleCheckAge = () => {
     const parsedAge = parseInt(age, 10);
     if (parsedAge >= 18) {
-      localStorage.setItem("isFirstEntrance", "true");
-      navigate("/");
+      localStorage.setItem("isAllowed", "true");
+      navigate("/home");
       setIsAllowed(true);
     } else {
       setIsAllowed(false);

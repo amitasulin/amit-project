@@ -22,14 +22,19 @@ import Users from "../../Components/Users/Users";
 import Wishlist from "../../Components/Wishlist/Wishlist";
 
 export default function Main() {
+  const isAllowed = localStorage.getItem("isAllowed");
+
   return (
     <div className="Main">
       <Layout>
         <Header />
 
         <Routes>
-          <Route path="/test" element={<AgeRestriction />} />
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={isAllowed ? <HomePage /> : <AgeRestriction />}
+          />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/strains/:strainId" element={<StrainDetailsPage />} />

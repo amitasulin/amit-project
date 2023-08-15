@@ -13,7 +13,7 @@ const Home = () => {
           />
         </Col>
         <Col md={8} className="d-flex align-items-left">
-          <div>
+          <div style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}>
             <h1>
               Welcome to Our Online Store!
               <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cannabis_leaf.svg/120px-Cannabis_leaf.svg.png"></Image>
