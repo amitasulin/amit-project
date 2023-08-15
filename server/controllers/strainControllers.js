@@ -56,14 +56,16 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const { error } = strainSchema.validate(req.body);
+    /*     const { error } = strainSchema.validate(req.body);
     if (error) {
+      console.log(error.details[0].message);
       return res.status(400).json({ error: error.details[0].message });
-    }
+    } */
 
     const strain = await Strain.create(req.body);
     res.status(200).json({ created: strain });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

@@ -29,13 +29,7 @@ const strainSchema = new mongoose.Schema({
     max: 5,
   },
   effects: {
-    type: {
-      name: {
-        type: String,
-        enum: ["Dizzy", "Happinness"],
-      },
-      value: Number,
-    },
+    type: [String],
   },
   price: {
     type: Number,

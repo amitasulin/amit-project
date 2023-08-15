@@ -2,6 +2,75 @@ const Joi = require("joi");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
+const addToCart = async (req, res, next) => {
+  const params = req.params;
+
+  const quantity = params.quantity;
+  const strainId = params.strainId;
+
+  const user = req.user;
+
+  const userFound = await User.findById(user.id);
+
+  const cart = userFound.cart;
+
+  let newCart = [...cart, { quantity, strainId }];
+  userFound.cart = newCart;
+
+  userFound.save();
+  return res.status(200).send();
+};
+
+const removeFromCart = async (req, res, next) => {
+  const params = req.params;
+
+  const quantity = params.quantity;
+  const strainId = params.strainId;
+
+  const user = req.user;
+
+  const userFound = await User.findById(user.id);
+
+  const cart = userFound.cart;
+
+  const foundItemIdx = cart.findIndex((item) => item.id === strainId);
+
+  if (foundItemIdx !== -1) {
+    const foundItem = cart[foundItemIdx];
+    if (foundItem.quantity - quantity <= 0) {
+      let newCart = cart.filter((item) => item.strainId === strainId);
+      userFound.cart = newCart;
+    } else {
+      let newCart = [...cart];
+      newCart[foundItemIdx].quantity -= quantity;
+      userFound.cart = newCart;
+    }
+    userFound.save();
+    return res.status(200).send();
+  }
+};
+
+const toggleWishlist = async (req, res, next) => {
+  const strainId = req.params.strainId;
+
+  const user = req.user;
+
+  const userFound = await User.findById(user.id);
+
+  const wishlist = userFound.wishlist;
+
+  if (wishlist.includes(strainId)) {
+    let newWishlist = wishlist.filter((strain) => strain.id === strainId);
+    userFound.wishlist = newWishlist;
+  } else {
+    let newWishlist = [...wishlist, strainId];
+    userFound.wishlist = newWishlist;
+  }
+
+  userFound.save();
+  return res.status(200).send();
+};
+
 const getAllUsers = async (req, res, next) => {
   try {
     const { page = 1, limit = 25 } = req.query;
@@ -159,4 +228,7 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  toggleWishlist,
+  addToCart,
+  removeFromCart,
 };

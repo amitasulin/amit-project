@@ -13,3 +13,9 @@ export async function getStrainById(strainId) {
   const response = http.get(`http://localhost:5000/api/strains/${strainId}`);
   return response;
 }
+
+export async function addStrain(params) {
+  // get a strain by id from the server
+  const response = http.post(`http://localhost:5000/api/strains/`, params);
+  return response;
+}

@@ -17,6 +17,8 @@ import ContactForm from "../../Components/ContactUs/ContactForm";
 import Layout from "../../Components/Pages/Layout";
 import ShippingAndReturnPolicy from "../../Components/Pages/ShippingAndReturnPolicy";
 import FAQ from "../../Components/Pages/FAQ";
+import NewStrain from "../../Components/NewStrain/NewStrain";
+import Users from "../../Components/Users/Users";
 
 export default function Main() {
   return (
@@ -31,6 +33,10 @@ export default function Main() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/strains/:strainId" element={<StrainDetailsPage />} />
           <Route path="/strains" element={<AllStrains />} />
+          <Route path="/newStrain" element={<NewStrain />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/cart" element={<NewStrain />} />
+          <Route path="/orders" element={<NewStrain />} />
           <Route path="/contactus" element={<ContactForm />} />
           {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="*" element={<Error404Page />} />

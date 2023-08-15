@@ -3,8 +3,11 @@ import "./AllStrains.css";
 import { StrainContext } from "../../context/strainContext";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import Pagination from "react-bootstrap/Pagination";
+import { useNavigate } from "react-router-dom";
+import { toggleWishlist, addToCart } from "../../services/userService";
 
 export default function AllStrains() {
+  const navigate = useNavigate();
   const { strains, page, totalPages, fetchAllStrains } =
     useContext(StrainContext);
 
@@ -25,9 +28,11 @@ export default function AllStrains() {
     <Container>
       <Row>
         <h1> All Strains</h1>
+        <button onClick={() => navigate("/newStrain")}>Add</button>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Pagination>{items}</Pagination>
         </div>
+
         {!strains
           ? "Loading strains, please wait..."
           : strains.map((strain) => (
@@ -54,8 +59,18 @@ export default function AllStrains() {
                     <Card.Link href={`/strains/${strain._id}`}>
                       More Info
                     </Card.Link>
-                    <Card.Link href="#">Add to wishlist</Card.Link>
-                    <Card.Link href="#">Add to cart</Card.Link>
+                    <Card.Link
+                      style={{ cursor: "pointer" }}
+                      onClick={() => toggleWishlist(strain._id)}
+                    >
+                      Add to wishlist
+                    </Card.Link>
+                    <Card.Link
+                      style={{ cursor: "pointer" }}
+                      onClick={() => addToCart(strain._id, 1)}
+                    >
+                      Add to cart
+                    </Card.Link>
                   </Card.Body>
                 </Card>
               </Col>

@@ -9,10 +9,17 @@ export default function LoggedIn() {
 
   return (
     <div className="LoggedIn">
-      <div>Hello</div>
       <Link to="/profile">
         {userData.firstName}
         <i style={{ marginLeft: "6px" }} className="bi bi-person-circle"></i>
+      </Link>
+      <Link to="/cart">
+        Cart
+        <i style={{ marginLeft: "6px" }} className="bi bi-cart"></i>
+      </Link>
+      <Link to="/orders">
+        Orders
+        <i style={{ marginLeft: "6px" }} className="bi bi-list-check"></i>
       </Link>
       <Button onClick={() => signOut()} variant="danger">
         Sign out
