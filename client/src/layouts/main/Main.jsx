@@ -28,32 +28,33 @@ export default function Main() {
     <div className="Main">
       <Layout>
         <Header />
+        <div style={{ border: "1px solid blue", display: "flex", flex: 1 }}>
+          <Routes>
+            <Route
+              path="/"
+              element={isAllowed ? <HomePage /> : <AgeRestriction />}
+            />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/strains/:strainId" element={<StrainDetailsPage />} />
+            <Route path="/strains" element={<AllStrains />} />
+            <Route path="/newStrain" element={<NewStrain />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/cart" element={<NewStrain />} />
+            <Route path="/orders" element={<NewStrain />} />
+            <Route path="/wishlist" element={<Wishlist />} />
 
-        <Routes>
-          <Route
-            path="/"
-            element={isAllowed ? <HomePage /> : <AgeRestriction />}
-          />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/strains/:strainId" element={<StrainDetailsPage />} />
-          <Route path="/strains" element={<AllStrains />} />
-          <Route path="/newStrain" element={<NewStrain />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/cart" element={<NewStrain />} />
-          <Route path="/orders" element={<NewStrain />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-
-          <Route path="/contactus" element={<ContactForm />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
-          <Route path="*" element={<Error404Page />} />
-          <Route
-            path="/shippingAndReturnPolicy"
-            element={<ShippingAndReturnPolicy />}
-          />
-          <Route path="/FAQ" element={<FAQ />} />
-        </Routes>
+            <Route path="/contactus" element={<ContactForm />} />
+            {/* <Route path="/cart" element={<Cart />} /> */}
+            <Route path="*" element={<Error404Page />} />
+            <Route
+              path="/shippingAndReturnPolicy"
+              element={<ShippingAndReturnPolicy />}
+            />
+            <Route path="/FAQ" element={<FAQ />} />
+          </Routes>
+        </div>
         <Footer />
       </Layout>
     </div>

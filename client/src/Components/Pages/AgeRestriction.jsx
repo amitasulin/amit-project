@@ -22,7 +22,7 @@ const AgeRestriction = () => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", flex: 1 }}>
       <h1>Age Restriction</h1> <br></br>
       <p>
         You must be 18 years of age or older to access this website and/or to
