@@ -1,11 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AllStrains.css";
-import { StrainContext } from "../../context/strainContext";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
-import Pagination from "react-bootstrap/Pagination";
-import { useNavigate } from "react-router-dom";
 import { toggleWishlist, addToCart, getData } from "../../services/userService";
-import { UserContext } from "../../context/userContext";
 
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);

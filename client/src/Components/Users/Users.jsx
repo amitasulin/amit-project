@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { getAllUsers } from "../../services/userService";

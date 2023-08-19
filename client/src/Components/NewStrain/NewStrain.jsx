@@ -1,9 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./AllStrains.css";
-import { StrainContext } from "../../context/strainContext";
-import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
-import Pagination from "react-bootstrap/Pagination";
-import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -94,6 +91,23 @@ export default function NewStrain() {
           />
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Thc Level</Form.Label>
+          <Form.Control
+            value={state.thcLevel}
+            onChange={(e) => setState({ ...state, thcLevel: e.target.value })}
+            placeholder="Thc Level"
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>img_url</Form.Label>
+          <Form.Control
+            value={state.img_url}
+            onChange={(e) => setState({ ...state, img_url: e.target.value })}
+            placeholder="img_url"
+          />
+        </Form.Group>
         <Button
           onClick={(e) => {
             e.preventDefault();

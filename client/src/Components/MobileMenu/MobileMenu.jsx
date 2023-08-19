@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { useContext } from "react";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { AppContext } from "../../context/appContext";
@@ -12,12 +11,21 @@ function MobileMenu() {
 
   return (
     <>
-      <Offcanvas show={showMobileMenu} onHide={handleClose}>
+      <Offcanvas
+        style={{ backgroundColor: " #26a550" }}
+        show={showMobileMenu}
+        onHide={handleClose}
+      >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <Link onClick={handleClose} to="/">
               Home
             </Link>

@@ -21,6 +21,7 @@ import NewStrain from "../../Components/NewStrain/NewStrain";
 import Users from "../../Components/Users/Users";
 import Wishlist from "../../Components/Wishlist/Wishlist";
 import { MobileMenu } from "../../Components/MobileMenu/MobileMenu";
+import AboutPage from "../../Components/Pages/AboutPage";
 
 export default function Main() {
   const isAllowed = localStorage.getItem("isAllowed");
@@ -30,7 +31,7 @@ export default function Main() {
       <Layout>
         <Header />
         <MobileMenu />
-        <div style={{ border: "1px solid blue", display: "flex", flex: 1 }}>
+        <div>
           <Routes>
             <Route
               path="/"
@@ -54,6 +55,7 @@ export default function Main() {
               path="/shippingAndReturnPolicy"
               element={<ShippingAndReturnPolicy />}
             />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/FAQ" element={<FAQ />} />
           </Routes>
         </div>
@@ -62,3 +64,4 @@ export default function Main() {
     </div>
   );
 }
+//style={{ border: "1px solid blue", display: "flex", flex: 1 }}

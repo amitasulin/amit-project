@@ -13,7 +13,6 @@ export default function ProtectedRoute(props) {
       <p>You have to be logged in to view this content</p>
 
       <div>
-        {" "}
         Click <Link to="/signin"> here </Link> to login.{" "}
       </div>
     </React.Fragment>

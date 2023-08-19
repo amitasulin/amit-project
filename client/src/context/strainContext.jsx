@@ -9,7 +9,6 @@ export const StrainProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchAllStrains = async (search = "", _page = 1) => {
-    console.log("Fetching strains...");
     const response = await getAllStrains({ search, page: _page });
     const strainsArray = response.data.data;
     const page = response.data.page;

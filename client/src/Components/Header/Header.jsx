@@ -9,7 +9,7 @@ import { StrainContext } from "../../context/strainContext";
 import { AppContext } from "../../context/appContext";
 
 export default function Header() {
-  const { isLoggedIn, userData } = useContext(UserContext);
+  const { isLoggedIn } = useContext(UserContext);
   const { fetchAllStrains } = useContext(StrainContext);
   const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
 
@@ -35,6 +35,9 @@ export default function Header() {
             <span> Amit </span>
             🌱
             <span> Cannabis shop </span>
+            <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
+              ☰
+            </button>
           </div>
         </Col>
         <Col
@@ -47,13 +50,12 @@ export default function Header() {
           lg
           className="d-none d-md-block"
         >
-          <Link to="/">Home</Link>
-          <Link to="/strains">Products</Link>
-          <Link to="/users">Users</Link>
-          <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
-            Ham
-          </button>
-          <Link to="/contactus">Contact Us</Link>
+          <Link to="/">Home |</Link>
+          <Link to="/strains"> Products |</Link>
+          <Link to="/users"> Users | </Link>
+          <Link to="/contactus"> Contact Us |</Link>
+          <Link to="/about"> About | </Link>
+
           {/* <Link to="/cart">Cart</Link> */}
         </Col>
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 const AgeRestriction = () => {
   const [age, setAge] = useState("");
   const [isAllowed, setIsAllowed] = useState(false);
@@ -22,12 +21,15 @@ const AgeRestriction = () => {
   };
 
   return (
-    <div style={{ display: "flex", flex: 1 }}>
+    <div style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}>
       <h1>Age Restriction</h1> <br></br>
       <p>
         You must be 18 years of age or older to access this website and/or to
-        purchase non-medical cannabis. Products on this website will only be
-        delivered to addresses within the Province of Newfoundland and Labrador
+        purchase non-medical cannabis.{" "}
+      </p>
+      <p>
+        Products on this website will only be delivered to addresses within the
+        Province of New found land and Labrador{" "}
       </p>
       <label htmlFor="age-input">Enter your age:</label>
       <input
