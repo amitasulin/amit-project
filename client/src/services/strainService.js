@@ -19,3 +19,11 @@ export async function addStrain(params) {
   const response = http.post(`http://localhost:5000/api/strains/`, params);
   return response;
 }
+
+export async function deleteStrain(id) {
+  // get a strain by id from the server
+
+  console.log("pressed");
+  const response = http.delete(`http://localhost:5000/api/strains/${id}`);
+  return response;
+}

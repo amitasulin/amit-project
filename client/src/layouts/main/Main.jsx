@@ -22,10 +22,17 @@ import Users from "../../Components/Users/Users";
 import Wishlist from "../../Components/Wishlist/Wishlist";
 import { MobileMenu } from "../../Components/MobileMenu/MobileMenu";
 import AboutPage from "../../Components/Pages/AboutPage";
+import { useState } from "react";
+
+const InitialScreen = () => {
+  const [isAllowed, setIsAllowed] = useState(localStorage.getItem("isAllowed"));
+  if (isAllowed) return <HomePage />;
+  else {
+    return <AgeRestriction setIsAllowed={setIsAllowed} />;
+  }
+};
 
 export default function Main() {
-  const isAllowed = localStorage.getItem("isAllowed");
-
   return (
     <div className="Main">
       <Layout>
@@ -33,11 +40,7 @@ export default function Main() {
         <MobileMenu />
         <div>
           <Routes>
-            <Route
-              path="/"
-              element={isAllowed ? <HomePage /> : <AgeRestriction />}
-            />
-            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<InitialScreen />} />
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/strains/:strainId" element={<StrainDetailsPage />} />

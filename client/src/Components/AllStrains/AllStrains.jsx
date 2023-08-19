@@ -5,6 +5,7 @@ import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import Pagination from "react-bootstrap/Pagination";
 import { useNavigate } from "react-router-dom";
 import { toggleWishlist, addToCart } from "../../services/userService";
+import { deleteStrain } from "../../services/strainService";
 
 export default function AllStrains() {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ export default function AllStrains() {
           : strains.map((strain) => (
               <Col key={strain._id}>
                 <Card style={{ width: "18rem" }}>
+                  <button onClick={() => deleteStrain(strain._id)}>
+                    Delete
+                  </button>
                   <Card.Img variant="top" src={strain.img_url} />
                   <Card.Body>
                     <Card.Title>{strain.name}</Card.Title>

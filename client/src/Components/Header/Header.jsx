@@ -35,7 +35,10 @@ export default function Header() {
             <span> Amit </span>
             🌱
             <span> Cannabis shop </span>
-            <button onClick={() => setShowMobileMenu(!showMobileMenu)}>
+            <button
+              className="d-sm-block d-md-none"
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+            >
               ☰
             </button>
           </div>

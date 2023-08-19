@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const AgeRestriction = () => {
+const AgeRestriction = ({ setIsAllowed }) => {
   const [age, setAge] = useState("");
-  const [isAllowed, setIsAllowed] = useState(false);
 
   const navigate = useNavigate();
   const handleAgeChange = (event) => {
@@ -13,7 +12,7 @@ const AgeRestriction = () => {
     const parsedAge = parseInt(age, 10);
     if (parsedAge >= 18) {
       localStorage.setItem("isAllowed", "true");
-      navigate("/home");
+      navigate("/");
       setIsAllowed(true);
     } else {
       setIsAllowed(false);
@@ -39,11 +38,6 @@ const AgeRestriction = () => {
         onChange={handleAgeChange}
       />
       <button onClick={handleCheckAge}>Check Age</button>
-      {isAllowed ? (
-        <p>You are allowed to access the content.</p>
-      ) : (
-        <p>Sorry, you must be 18 years or older to access the content.</p>
-      )}
     </div>
   );
 };
