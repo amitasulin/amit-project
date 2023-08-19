@@ -1,12 +1,12 @@
 import React, { useContext, useRef } from "react";
 import "./Header.css";
-import ProfileIndicator from "./ProfileIndicator/ProfileIndicator";
 
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
 import { AppContext } from "../../context/appContext";
+import ProfileIndicator from "./ProfileIndicator/ProfileIndicator";
 
 export default function Header() {
   const { isLoggedIn } = useContext(UserContext);
@@ -53,13 +53,11 @@ export default function Header() {
           lg
           className="d-none d-md-block"
         >
-          <Link to="/">Home |</Link>
+          <Link to="/"> Home |</Link>
           <Link to="/strains"> Products |</Link>
           <Link to="/users"> Users | </Link>
           <Link to="/contactus"> Contact Us |</Link>
           <Link to="/about"> About | </Link>
-
-          {/* <Link to="/cart">Cart</Link> */}
         </Col>
 
         <Col
@@ -95,7 +93,6 @@ export default function Header() {
           lg
         >
           {isLoggedIn ? null : <Link to="/signin">Sign In</Link>}
-
           <ProfileIndicator />
         </Col>
       </Row>
