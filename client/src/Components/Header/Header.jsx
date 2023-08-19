@@ -6,12 +6,12 @@ import { UserContext } from "../../context/userContext";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
 import { AppContext } from "../../context/appContext";
-import ProfileIndicator from "./ProfileIndicator/ProfileIndicator";
 
 export default function Header() {
   const { isLoggedIn } = useContext(UserContext);
   const { fetchAllStrains } = useContext(StrainContext);
   const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
+  const { userData, signOut } = useContext(UserContext);
 
   const navigate = useNavigate();
   const searchRef = useRef();
@@ -23,24 +23,27 @@ export default function Header() {
 
   return (
     <div className="Header">
-      <Row style={{ padding: "20px 0px", justifyContent: "space-between" }}>
+      <div
+        className="d-flex flex-row"
+        style={{ padding: "20px 20px", justifyContent: "space-between" }}
+      >
         <Col
           style={{
             margin: "auto",
             maxWidth: "240px",
           }}
-          lg
         >
-          <div className="logo">
+          <div style={{ margin: "0px 0px 0px 20px" }} className="logo">
             <span> Amit </span>
             🌱
             <span> Cannabis shop </span>
-            <button
-              className="d-sm-block d-md-none"
+            <div
+              style={{ position: "absolute", top: 20, left: 20 }}
+              className="d-sm-block d-lg-none"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               ☰
-            </button>
+            </div>
           </div>
         </Col>
         <Col
@@ -50,14 +53,17 @@ export default function Header() {
             display: "flex",
             maxWidth: "500px",
           }}
-          lg
-          className="d-none d-md-block"
+          className="d-none d-lg-block"
         >
-          <Link to="/"> Home |</Link>
-          <Link to="/strains"> Products |</Link>
-          <Link to="/users"> Users | </Link>
-          <Link to="/contactus"> Contact Us |</Link>
-          <Link to="/about"> About | </Link>
+          <Link to="/">Home</Link>
+          {" | "}
+          <Link to="/strains">Products</Link>
+          {" | "}
+          <Link to="/users">Users</Link>
+          {" | "}
+          <Link to="/contactus">Contact Us</Link>
+          {" | "}
+          <Link to="/about">About</Link>
         </Col>
 
         <Col
@@ -65,7 +71,6 @@ export default function Header() {
             margin: "auto",
             maxWidth: "400px",
           }}
-          lg
         >
           <Form
             onSubmit={(e) => {
@@ -87,15 +92,47 @@ export default function Header() {
           </Form>
         </Col>
 
-        <Col
-          className="d-none d-md-block"
-          style={{ margin: "auto", maxWidth: "400px" }}
-          lg
-        >
-          {isLoggedIn ? null : <Link to="/signin">Sign In</Link>}
-          <ProfileIndicator />
+        <Col className="d-none d-lg-block" style={{ margin: "auto" }}>
+          {isLoggedIn ? (
+            <div className="LoggedIn">
+              <Link to="/profile">
+                {userData.firstName}
+                <i
+                  style={{ marginLeft: "6px" }}
+                  className="bi bi-person-circle"
+                ></i>
+              </Link>
+              <Link to="/cart">
+                Cart
+                <i style={{ marginLeft: "6px" }} className="bi bi-cart"></i>
+              </Link>
+              <Link to="/orders">
+                Orders
+                <i
+                  style={{ marginLeft: "6px" }}
+                  className="bi bi-list-check"
+                ></i>
+              </Link>
+              <Link to="/wishlist">
+                Wishlist
+                <i
+                  style={{ marginLeft: "6px" }}
+                  className="bi bi-person-lines-fill"
+                ></i>
+              </Link>
+              <Button onClick={() => signOut()} variant="danger">
+                Sign out
+                <i
+                  style={{ marginLeft: "6px" }}
+                  className="bi bi-box-arrow-in-right"
+                ></i>
+              </Button>
+            </div>
+          ) : (
+            <Link to="/signin">Sign In</Link>
+          )}
         </Col>
-      </Row>
+      </div>
     </div>
   );
 }
