@@ -69,4 +69,3 @@ export default function Main() {
     </div>
   );
 }
-//style={{ border: "1px solid blue", display: "flex", flex: 1 }}

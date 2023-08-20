@@ -7,6 +7,12 @@ export async function getAllUsers(queryParams) {
   const response = http.get(`http://localhost:5000/api/users?${queryString}`);
   return response;
 }
+export async function getUserById(userId) {
+  // get and return a list of strains from our server
+
+  const response = http.get(`http://localhost:5000/api/users?${userId}`);
+  return response;
+}
 
 export async function toggleWishlist(strainId) {
   // get and return a list of strains from our server

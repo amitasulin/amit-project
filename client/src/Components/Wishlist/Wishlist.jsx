@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./AllStrains.css";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { toggleWishlist, addToCart, getData } from "../../services/userService";
 

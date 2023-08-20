@@ -3,7 +3,7 @@ import "./Header.css";
 
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
 import { AppContext } from "../../context/appContext";
 
