@@ -24,31 +24,41 @@ export default function Header() {
   return (
     <div className="Header">
       <div
-        className="d-flex flex-row"
-        style={{ padding: "20px 20px", justifyContent: "space-between" }}
+        className="d-flex flex-row flex-wrap"
+        style={{
+          padding: "20px 40px",
+          justifyContent: "space-between",
+          position: "relative",
+        }}
       >
         <Col
+          lg
           style={{
             margin: "auto",
-            maxWidth: "240px",
           }}
         >
-          <div style={{ margin: "0px 0px 0px 20px" }} className="logo">
+          <div className="logo">
             <span> Amit </span>
             🌱
             <span> Cannabis shop </span>
             <div
-              style={{ position: "absolute", top: 20, left: 20 }}
-              className="d-sm-block d-lg-none"
+              style={{
+                position: "absolute",
+                alignItems: "center",
+                left: 20,
+                top: 0,
+                bottom: 0,
+              }}
+              className="d-flex d-lg-none"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
-              ☰
+              <span>☰</span>
             </div>
           </div>
         </Col>
         <Col
           style={{
-            margin: "auto",
+            margin: "auto 20px",
             justifyContent: "space-around",
             display: "flex",
             maxWidth: "500px",
@@ -68,8 +78,9 @@ export default function Header() {
 
         <Col
           style={{
-            margin: "auto",
-            maxWidth: "400px",
+            marginLeft: "20px",
+            maxWidth: "450px",
+            minWidth: "300px",
           }}
         >
           <Form
@@ -92,7 +103,10 @@ export default function Header() {
           </Form>
         </Col>
 
-        <Col className="d-none d-lg-block" style={{ margin: "auto" }}>
+        <Col
+          className="d-none d-lg-block"
+          style={{ margin: "auto auto auto 20px" }}
+        >
           {isLoggedIn ? (
             <div className="LoggedIn">
               <Link to="/profile">
@@ -120,7 +134,11 @@ export default function Header() {
                   className="bi bi-person-lines-fill"
                 ></i>
               </Link>
-              <Button onClick={() => signOut()} variant="danger">
+              <Button
+                style={{ position: "absolute", bottom: -40, right: 0 }}
+                onClick={() => signOut()}
+                variant="danger"
+              >
                 Sign out
                 <i
                   style={{ marginLeft: "6px" }}
