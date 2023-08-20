@@ -76,6 +76,7 @@ const signIn = async (req, res) => {
       profilePicture: user.profilePicture,
       wishlist: user.wishlist,
       cart: user.cart,
+      email,
     };
 
     const token = await generateToken(payload);

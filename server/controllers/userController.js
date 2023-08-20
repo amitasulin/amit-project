@@ -8,8 +8,11 @@ const getData = async (req, res) => {
     // check if user exist in db
     const userFound = await User.findById(user.id).populate("wishlist");
 
+    console.log(userFound);
+
     const payload = {
       id: userFound.id,
+      email: userFound.email,
       firstName: userFound.firstName,
       lastName: userFound.lastName,
       role: userFound.role,
