@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { UserContext } from "../../context/userContext";
 
 export default function Profile() {
@@ -26,7 +25,6 @@ export default function Profile() {
                   <h6>First Name: {userData?.firstName}</h6>
                   <h6>Last Name: {userData?.lastName}</h6>
                   <h6>ID : {userData?.id}</h6>
-
                   <h6>Email: {userData?.email}</h6>
                   <h6>Role: {userData?.role}</h6>
                 </div>

@@ -1,11 +1,18 @@
 import React from "react";
-import "./Layout.css";
 import Accordion from "react-bootstrap/Accordion";
+import Container from "react-bootstrap/Container";
+import img from "../../assets/CLHpktmI5_QCEAE=.webp";
 
 function FAQ() {
   return (
-    <div className="allPage">
-      <Accordion defaultActiveKey="0">
+    <Container fluid="lg" style={{ maxWidth: "800px", paddingBottom: "50px" }}>
+      <img
+        className="img-fluid"
+        src={img}
+        alt="logo"
+        style={{ height: "300px" }}
+      />
+      <Accordion fluid="lg" defaultActiveKey="0">
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             Do I have to be home to receive my order?
@@ -77,7 +84,7 @@ function FAQ() {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-    </div>
+    </Container>
   );
 }
 

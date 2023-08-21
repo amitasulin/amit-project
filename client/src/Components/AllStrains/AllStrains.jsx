@@ -6,6 +6,7 @@ import Pagination from "react-bootstrap/Pagination";
 import { useNavigate } from "react-router-dom";
 import { toggleWishlist, addToCart } from "../../services/userService";
 import { deleteStrain } from "../../services/strainService";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 export default function AllStrains() {
   const navigate = useNavigate();
@@ -29,8 +30,22 @@ export default function AllStrains() {
     <Container>
       <Row>
         <h1> All Strains</h1>
-        <button onClick={() => navigate("/newStrain")}>Add</button>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <ProtectedRoute allowedRoles={["admin"]}>
+          <button
+            onClick={() => navigate("/newStrain")}
+            style={{ width: "100px", margin: "auto", borderRadius: "100px" }}
+          >
+            <i class="bi bi-file-earmark-plus"> Add new strain</i>
+          </button>
+        </ProtectedRoute>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: "20px",
+            borderRadius: "100px",
+          }}
+        >
           <Pagination>{items}</Pagination>
         </div>
 
@@ -38,11 +53,24 @@ export default function AllStrains() {
           ? "Loading strains, please wait..."
           : strains.map((strain) => (
               <Col key={strain._id}>
-                <Card style={{ width: "18rem" }}>
-                  <button onClick={() => deleteStrain(strain._id)}>
-                    Delete
-                  </button>
-                  <Card.Img variant="top" src={strain.img_url} />
+                <Card style={{ width: "18rem", borderRadius: "100px" }}>
+                  <ProtectedRoute allowedRoles={["admin"]}>
+                    <button
+                      style={{
+                        width: "100px",
+                        margin: "auto",
+                        borderRadius: "100px",
+                      }}
+                      onClick={() => deleteStrain(strain._id)}
+                    >
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </ProtectedRoute>
+                  <Card.Img
+                    style={{ height: "230px", borderRadius: "100px" }}
+                    variant="top"
+                    src={strain.img_url}
+                  />
                   <Card.Body>
                     <Card.Title>{strain.name}</Card.Title>
                     <Card.Text
@@ -54,29 +82,37 @@ export default function AllStrains() {
                       {strain.description}
                     </Card.Text>
                   </Card.Body>
-                  <ListGroup className="list-group-flush">
+                  <ListGroup
+                    className="list-group-flush"
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      margin: "auto",
+                    }}
+                  >
                     <ListGroup.Item>{strain.price + "$"}</ListGroup.Item>
                     <ListGroup.Item>{strain.type}</ListGroup.Item>
                     <ListGroup.Item>{strain.thcLevel}</ListGroup.Item>
                   </ListGroup>
                   <Card.Body>
                     <Card.Link href={`/strains/${strain._id}`}>
-                      More Info
+                      <i class="bi bi-info-circle"> More Info</i>
                     </Card.Link>
                     <Card.Link
                       style={{ cursor: "pointer" }}
                       onClick={() => toggleWishlist(strain._id)}
                     >
-                      Add to wishlist
+                      <i class="bi bi-bag-check"> Add to wishlist</i>
                     </Card.Link>
                     <Card.Link
                       style={{ cursor: "pointer" }}
                       onClick={() => addToCart(strain._id, 1)}
                     >
-                      Add to cart
+                      <i class="bi bi-cart">Add to cart</i>
                     </Card.Link>
                   </Card.Body>
                 </Card>
+                <br></br>
               </Col>
             ))}
         <div style={{ display: "flex", justifyContent: "center" }}>

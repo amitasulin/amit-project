@@ -1,9 +1,12 @@
 import React from "react";
 import "./ShippingAndReturnPolicy.css";
+import img from "../../assets/download.jpg";
 export default function ShippingAndReturnPolicy() {
   return (
     <div className="shipping-return-policy">
       <h2>Shipping and Return Policy</h2>
+      <img className="img-fluid" src={img} alt="logo" />
+
       <h3>Shipping Information</h3>
       <p>
         We offer fast and reliable shipping to our customers. Orders are usually

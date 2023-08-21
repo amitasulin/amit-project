@@ -37,24 +37,26 @@ export default function Header() {
             margin: "auto",
           }}
         >
-          <div className="logo">
-            <span> Amit </span>
-            🌱
-            <span> Cannabis shop </span>
-            <div
-              style={{
-                position: "absolute",
-                alignItems: "center",
-                left: 20,
-                top: 0,
-                bottom: 0,
-              }}
-              className="d-flex d-lg-none"
-              onClick={() => setShowMobileMenu(!showMobileMenu)}
-            >
-              <span>☰</span>
+          <Link to="/">
+            <div className="logo">
+              <span> Amit </span>
+              🌱
+              <span> Cannabis shop </span>
+              <div
+                style={{
+                  position: "absolute",
+                  alignItems: "center",
+                  left: 20,
+                  top: 0,
+                  bottom: 0,
+                }}
+                className="d-flex d-lg-none"
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+              >
+                <span>☰</span>
+              </div>
             </div>
-          </div>
+          </Link>
         </Col>
         <Col
           style={{

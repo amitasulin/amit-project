@@ -16,6 +16,7 @@ const getData = async (req, res) => {
       profilePicture: userFound.profilePicture,
       wishlist: userFound.wishlist,
       cart: userFound.cart,
+      email: userFound.email,
     };
 
     res.status(200).json(payload);

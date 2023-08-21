@@ -1,3 +1,10 @@
 .about-page {
-    text-align: center;    
-    background-Color:rgba(255, 255, 255, 0.2) }
+    margin: auto;
+    background-Color:rgba(255, 255, 255, 0.2);
+    max-width: 800px;
+
+}
+
+.img-fluid {
+    padding: 20px
+}

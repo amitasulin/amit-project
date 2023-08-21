@@ -1,8 +1,13 @@
 import React from "react";
 import "./AboutPage.css";
+import img from "../../assets/aboutus-aboutme.webp";
 const AboutPage = () => {
   return (
     <div className="about-page">
+      <div>
+        <img className="img-fluid" src={img} alt="logo" />
+        <br></br>
+      </div>
       <h2>About Our Cannabis E-Commerce Store</h2>
       <p>
         Welcome to Amit Cannabis shop, your trusted source for premium cannabis

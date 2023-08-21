@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import img from "../../assets/Cannabis-Age-Restrictions.webp";
 const AgeRestriction = ({ setIsAllowed }) => {
   const [age, setAge] = useState("");
 
@@ -20,8 +21,21 @@ const AgeRestriction = ({ setIsAllowed }) => {
   };
 
   return (
-    <div style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}>
-      <h1>Age Restriction</h1> <br></br>
+    <div
+      style={{
+        backgroundColor: "rgba(255, 255, 255, 0.2)",
+        maxWidth: "500px",
+        margin: "auto",
+        paddingBottom: "50px",
+      }}
+    >
+      <h1>Age Restriction</h1>
+      <img
+        className="img-fluid"
+        src={img}
+        alt="logo"
+        style={{ height: "300px" }}
+      />
       <p>
         You must be 18 years of age or older to access this website and/or to
         purchase non-medical cannabis.{" "}
@@ -36,7 +50,7 @@ const AgeRestriction = ({ setIsAllowed }) => {
         type="number"
         value={age}
         onChange={handleAgeChange}
-      />
+      />{" "}
       <button onClick={handleCheckAge}>Check Age</button>
     </div>
   );
