@@ -6,6 +6,7 @@ import { UserContext } from "../../context/userContext";
 import { Button, Col, Form } from "react-bootstrap";
 import { StrainContext } from "../../context/strainContext";
 import { AppContext } from "../../context/appContext";
+import logo from "../../assets/608dbc866bdc4afcb272cb70110c9015.png";
 
 export default function Header() {
   const { isLoggedIn } = useContext(UserContext);
@@ -39,9 +40,12 @@ export default function Header() {
         >
           <Link to="/">
             <div className="logo">
-              <span> Amit </span>
-              🌱
-              <span> Cannabis shop </span>
+              <img
+                className="img-fluid"
+                src={logo}
+                alt="logo"
+                style={{ height: "100px" }}
+              />
               <div
                 style={{
                   position: "absolute",
@@ -90,6 +94,7 @@ export default function Header() {
               e.preventDefault();
               onSearch();
             }}
+            style={{ paddingTop: "20px" }}
             className="d-flex"
           >
             <Form.Control

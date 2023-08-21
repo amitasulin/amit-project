@@ -5,6 +5,7 @@ import { AppContext } from "../../context/appContext";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { Button } from "react-bootstrap";
+import logo from "../../assets/608dbc866bdc4afcb272cb70110c9015.png";
 
 function MobileMenu() {
   const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
@@ -21,8 +22,14 @@ function MobileMenu() {
         onHide={handleClose}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menu</Offcanvas.Title>
+          <Offcanvas.Title> Menu</Offcanvas.Title>
         </Offcanvas.Header>
+        <img
+          className="img-fluid"
+          src={logo}
+          alt="logo"
+          style={{ height: "100px", width: "100px" }}
+        />
         <Offcanvas.Body>
           <div
             style={{
