@@ -1,5 +1,5 @@
 .Header {
-  background-color: #26a550;
+  background-color: #26a550f0;
   color: white;
 }
 
@@ -16,7 +16,6 @@
 .Header a:hover {
   font-weight: 300;
 }
-
 
 .LoggedIn {
   display: flex;

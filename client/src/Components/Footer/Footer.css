@@ -1,16 +1,13 @@
 .footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    background-color: #26a550;
-    padding: 10px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: #26a550f0;
+  padding: 10px;
+}
 
-  }
-  
-  
-  .footer p {
-    margin: 0;
-  }
-  
+.footer p {
+  margin: 0;
+}
