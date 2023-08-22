@@ -36,35 +36,33 @@ const InitialScreen = () => {
 
 export default function Main() {
   return (
-    <div style={{ flex: 1 }}>
-      <Layout>
-        <Header />
-        <MobileMenu />
-        <div style={{ height: "100%", alignItems: "center" }}>
-          <Routes>
-            <Route path="/" element={<InitialScreen />} />
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/strains/:strainId" element={<ProductDetails />} />
-            <Route path="/strains" element={<ProductList />} />
-            <Route path="/newStrain" element={<CreateEditProduct />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/orders" element={<OrdersPage />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/contactus" element={<ContactUs />} />
-            <Route path="*" element={<Error404Page />} />
-            <Route
-              path="/shippingAndReturnPolicy"
-              element={<ShippingAndReturnPolicy />}
-            />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/FAQ" element={<FAQ />} />
-          </Routes>
-        </div>
-        <Footer />
-      </Layout>
-    </div>
+    <Layout>
+      <Header />
+      <MobileMenu />
+      <div style={{ height: "100%", alignItems: "center" }}>
+        <Routes>
+          <Route path="/" element={<InitialScreen />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/strains/:strainId" element={<ProductDetails />} />
+          <Route path="/strains" element={<ProductList />} />
+          <Route path="/newStrain" element={<CreateEditProduct />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="*" element={<Error404Page />} />
+          <Route
+            path="/shippingAndReturnPolicy"
+            element={<ShippingAndReturnPolicy />}
+          />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/FAQ" element={<FAQ />} />
+        </Routes>
+      </div>
+      <Footer />
+    </Layout>
   );
 }
