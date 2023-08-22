@@ -6,9 +6,9 @@ const getData = async (req, res) => {
   const user = req.user;
   try {
     // check if user exist in db
-    const userFound = await User.findById(user.id).populate("wishlist");
-
-    console.log(userFound);
+    const userFound = await User.findById(user.id)
+      .populate("wishlist")
+      .populate("cart.strainId");
 
     const payload = {
       id: userFound.id,
@@ -29,8 +29,9 @@ const getData = async (req, res) => {
 };
 
 const addToCart = async (req, res, next) => {
-  const params = req.params;
+  const params = req.body;
 
+  console.log(params);
   const quantity = params.quantity;
   const strainId = params.strainId;
 

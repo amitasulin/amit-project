@@ -1,10 +1,7 @@
 import React from "react";
 
-import StrainDetails from "../components/StrainDetails/StrainDetails";
-
-// import "./Page.css";
-
 import { useParams } from "react-router-dom";
+import ProductDetails from "./productDetails/productDetails";
 
 export default function StrainDetailsPage() {
   const { strainId } = useParams();
@@ -12,7 +9,7 @@ export default function StrainDetailsPage() {
   return (
     <div className="StrainDetails Page">
       <div className="title">Strain Details Page</div>
-      <StrainDetails strainId={strainId} />
+      <ProductDetails strainId={strainId} />
     </div>
   );
 }

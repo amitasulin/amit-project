@@ -32,7 +32,7 @@ export default function Users() {
           {users.map((user, index) => (
             <tr key={user._id}>
               <td>{index + 1}</td>
-              <td in>{user.firstName}</td>
+              <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>

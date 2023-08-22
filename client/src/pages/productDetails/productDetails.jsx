@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getStrainById } from "../../services/strainService";
-import "./StrainDetails.css";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import "./productDetails.css";
+import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 
-export default function StrainDetails(props) {
+export default function ProductDetails(props) {
   const { strainId } = props;
 
   const [strain, setStrain] = useState(null);

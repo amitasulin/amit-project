@@ -29,12 +29,7 @@ function HowToOrder() {
           </Card.Body>
         </Card>
         <Card>
-          <Card.Img
-            variant="top"
-            src={packImg}
-            style={{ height: "200px" }}
-            lg
-          />
+          <Card.Img variant="top" src={packImg} style={{ height: "200px" }} />
           <Card.Body>
             <Card.Title>
               All Products ship directly from Afula Distribution Centre.

@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import "./AllStrains.css";
+import "./productList.css";
 import { StrainContext } from "../../context/strainContext";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import Pagination from "react-bootstrap/Pagination";
 import { useNavigate } from "react-router-dom";
 import { toggleWishlist, addToCart } from "../../services/userService";
 import { deleteStrain } from "../../services/strainService";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 
-export default function AllStrains() {
+export default function ProductList() {
   const navigate = useNavigate();
   const { strains, page, totalPages, fetchAllStrains } =
     useContext(StrainContext);

@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   price: "",
 };
 
-export default function NewStrain() {
+export default function CreateEditProduct() {
   const [state, setState] = useState(INITIAL_STATE);
 
   const addNewStrain = async () => {

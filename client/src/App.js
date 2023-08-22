@@ -6,14 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
-  useEffect(() => {
-    toast("test", {
-      position: "bottom-right",
-      autoClose: true,
-      closeOnClick: true,
-      theme: "light",
-    });
-  }, []);
   return (
     <div className="App">
       <Main />

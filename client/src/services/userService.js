@@ -23,10 +23,23 @@ export async function toggleWishlist(strainId) {
   return response;
 }
 
-export async function addToCart(params) {
+export async function addToCart(strainId, quantity) {
   // get and return a list of strains from our server
 
-  const response = http.post(`http://localhost:5000/api/users/cart/`, params);
+  const response = http.post(`http://localhost:5000/api/users/cart/`, {
+    strainId,
+    quantity,
+  });
+  return response;
+}
+
+export async function removeFromCart(strainId, quantity) {
+  // get and return a list of strains from our server
+
+  const response = http.delete(`http://localhost:5000/api/users/cart/`, {
+    strainId,
+    quantity,
+  });
   return response;
 }
 
