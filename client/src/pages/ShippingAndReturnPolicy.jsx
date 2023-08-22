@@ -1,6 +1,6 @@
 import React from "react";
 import "./ShippingAndReturnPolicy.css";
-import img from "../../assets/download.jpg";
+import img from "../assets/download.jpg";
 export default function ShippingAndReturnPolicy() {
   return (
     <div className="shipping-return-policy">

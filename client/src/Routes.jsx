@@ -1,29 +1,29 @@
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 //components
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import AllStrains from "../../Components/AllStrains/AllStrains";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import AllStrains from "./components/AllStrains/AllStrains";
 
 // Pages
-import HomePage from "../../Components/Pages/Home";
-import AgeRestriction from "../../Components/Pages/AgeRestriction";
-import Error404Page from "../../Components/Pages/Error404Page";
-import StrainDetailsPage from "../../Components/Pages/StrainDetailsPage";
-import SignInPage from "../../Components/Pages/SignInPage";
-import SignUpPage from "../../Components/Pages/SignUpPage";
-import ContactForm from "../../Components/ContactUs/ContactForm";
-import Layout from "../../Components/Pages/Layout";
-import ShippingAndReturnPolicy from "../../Components/Pages/ShippingAndReturnPolicy";
-import FAQ from "../../Components/Pages/FAQ";
-import NewStrain from "../../Components/NewStrain/NewStrain";
-import Users from "../../Components/Users/Users";
-import Wishlist from "../../Components/Wishlist/Wishlist";
-import { MobileMenu } from "../../Components/MobileMenu/MobileMenu";
-import AboutPage from "../../Components/Pages/AboutPage";
-import { useState } from "react";
-import Profile from "../../Components/Pages/Profile";
-import OrdersPage from "../../Components/Pages/OrdersPage";
+import HomePage from "./pages/Home";
+import AgeRestriction from "./pages/AgeRestriction";
+import Error404Page from "./pages/Error404Page";
+import StrainDetailsPage from "./pages/StrainDetailsPage";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+import ContactForm from "./components/ContactUs/ContactForm";
+import Layout from "./pages/Layout";
+import ShippingAndReturnPolicy from "./pages/ShippingAndReturnPolicy";
+import FAQ from "./pages/FAQ";
+import NewStrain from "./components/NewStrain/NewStrain";
+import Users from "./components/Users/Users";
+import Wishlist from "./components/Wishlist/Wishlist";
+import { MobileMenu } from "./components/MobileMenu/MobileMenu";
+import AboutPage from "./pages/AboutPage";
+import Profile from "./pages/Profile";
+import OrdersPage from "./pages/OrdersPage";
 
 const InitialScreen = () => {
   const [isAllowed, setIsAllowed] = useState(localStorage.getItem("isAllowed"));
@@ -35,7 +35,7 @@ const InitialScreen = () => {
 
 export default function Main() {
   return (
-    <div className="Main">
+    <div style={{ flex: 1 }}>
       <Layout>
         <Header />
         <MobileMenu />

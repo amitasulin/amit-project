@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import ProductSlider from "../ProductSlider/ProductSlider";
 import HowToOrder from "./HowToOrder";
+import ProductSlider from "../components/ProductSlider/ProductSlider";
 const Home = () => {
   return (
     <Container className="Container">
@@ -61,7 +61,7 @@ const Home = () => {
         {" "}
         <h1> Best Sellers</h1>
       </div>
-      <ProductSlider></ProductSlider>
+      <ProductSlider />
       <HowToOrder></HowToOrder>
     </Container>
   );

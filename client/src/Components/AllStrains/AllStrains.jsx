@@ -35,7 +35,7 @@ export default function AllStrains() {
             onClick={() => navigate("/newStrain")}
             style={{ width: "100px", margin: "auto", borderRadius: "100px" }}
           >
-            <i class="bi bi-file-earmark-plus"> Add new strain</i>
+            <i className="bi bi-file-earmark-plus"> Add new strain</i>
           </button>
         </ProtectedRoute>
         <div
@@ -63,7 +63,7 @@ export default function AllStrains() {
                       }}
                       onClick={() => deleteStrain(strain._id)}
                     >
-                      <i class="bi bi-trash3"></i>
+                      <i className="bi bi-trash3"></i>
                     </button>
                   </ProtectedRoute>
                   <Card.Img
@@ -96,19 +96,19 @@ export default function AllStrains() {
                   </ListGroup>
                   <Card.Body>
                     <Card.Link href={`/strains/${strain._id}`}>
-                      <i class="bi bi-info-circle"> More Info</i>
+                      <i className="bi bi-info-circle"> More Info</i>
                     </Card.Link>
                     <Card.Link
                       style={{ cursor: "pointer" }}
                       onClick={() => toggleWishlist(strain._id)}
                     >
-                      <i class="bi bi-bag-check"> Add to wishlist</i>
+                      <i className="bi bi-bag-check"> Add to wishlist</i>
                     </Card.Link>
                     <Card.Link
                       style={{ cursor: "pointer" }}
                       onClick={() => addToCart(strain._id, 1)}
                     >
-                      <i class="bi bi-cart">Add to cart</i>
+                      <i className="bi bi-cart">Add to cart</i>
                     </Card.Link>
                   </Card.Body>
                 </Card>

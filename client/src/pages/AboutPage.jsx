@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutPage.css";
-import img from "../../assets/aboutus-aboutme.webp";
+import img from "../assets/aboutus-aboutme.webp";
 const AboutPage = () => {
   return (
     <div className="about-page">

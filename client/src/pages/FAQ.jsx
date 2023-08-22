@@ -1,7 +1,7 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Container from "react-bootstrap/Container";
-import img from "../../assets/CLHpktmI5_QCEAE=.webp";
+import img from "../assets/CLHpktmI5_QCEAE=.webp";
 
 function FAQ() {
   return (

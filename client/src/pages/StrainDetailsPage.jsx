@@ -1,5 +1,7 @@
 import React from "react";
-import StrainDetails from "../StrainDetails/StrainDetails";
+
+import StrainDetails from "../components/StrainDetails/StrainDetails";
+
 // import "./Page.css";
 
 import { useParams } from "react-router-dom";

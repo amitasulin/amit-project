@@ -1,8 +1,8 @@
 import { Card, Container } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
-import orderImg from "../../assets/images.png";
-import packImg from "../../assets/cardboard-box-packing-peanuts-GettyImages-177495280-MLedit.jpg";
-import idImg from "../../assets/istockphoto-612650934-612x612.jpg";
+import orderImg from "../assets/images.png";
+import packImg from "../assets/cardboard-box-packing-peanuts-GettyImages-177495280-MLedit.jpg";
+import idImg from "../assets/istockphoto-612650934-612x612.jpg";
 import "./HowToOrder.css";
 
 function HowToOrder() {

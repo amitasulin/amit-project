@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import img from "../../assets/Cannabis-Age-Restrictions.webp";
+import img from "../assets/Cannabis-Age-Restrictions.webp";
 const AgeRestriction = ({ setIsAllowed }) => {
   const [age, setAge] = useState("");
 
