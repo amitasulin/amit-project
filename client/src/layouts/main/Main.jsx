@@ -12,7 +12,6 @@ import Error404Page from "../../Components/Pages/Error404Page";
 import StrainDetailsPage from "../../Components/Pages/StrainDetailsPage";
 import SignInPage from "../../Components/Pages/SignInPage";
 import SignUpPage from "../../Components/Pages/SignUpPage";
-import "bootstrap/dist/css/bootstrap.css";
 import ContactForm from "../../Components/ContactUs/ContactForm";
 import Layout from "../../Components/Pages/Layout";
 import ShippingAndReturnPolicy from "../../Components/Pages/ShippingAndReturnPolicy";
@@ -40,7 +39,7 @@ export default function Main() {
       <Layout>
         <Header />
         <MobileMenu />
-        <div>
+        <div style={{ height: "100%", alignItems: "center" }}>
           <Routes>
             <Route path="/" element={<InitialScreen />} />
             <Route path="/signin" element={<SignInPage />} />

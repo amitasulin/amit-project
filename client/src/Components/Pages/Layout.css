@@ -1,7 +1,8 @@
 .background-image-container {
   background-image: url('../../assets/luxa.org-opacity-changed-ImageForNews_744910_16813559615181685.webp');
-  background-size: cover;
-    background-repeat: no-repeat;
+  background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
     
   }
 

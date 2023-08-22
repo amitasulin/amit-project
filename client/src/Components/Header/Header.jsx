@@ -87,6 +87,9 @@ export default function Header() {
             marginLeft: "20px",
             maxWidth: "450px",
             minWidth: "300px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Form
@@ -94,7 +97,6 @@ export default function Header() {
               e.preventDefault();
               onSearch();
             }}
-            style={{ paddingTop: "20px" }}
             className="d-flex"
           >
             <Form.Control

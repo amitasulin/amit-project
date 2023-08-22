@@ -3,6 +3,7 @@ import "./App.css";
 import Main from "./layouts/main/Main";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
   useEffect(() => {
