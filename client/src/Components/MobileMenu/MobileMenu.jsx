@@ -50,29 +50,35 @@ function MobileMenu() {
               Contact Us
             </Link>
             {isLoggedIn ? null : <Link to="/signin">Sign In</Link>}
-            <Link to="/profile">
+            <Link onClick={handleClose} to="/profile">
               {userData?.firstName}
               <i
                 style={{ marginLeft: "6px" }}
                 className="bi bi-person-circle"
               ></i>
             </Link>
-            <Link to="/cart">
+            <Link onClick={handleClose} to="/cart">
               Cart
               <i style={{ marginLeft: "6px" }} className="bi bi-cart"></i>
             </Link>
-            <Link to="/orders">
+            <Link onClick={handleClose} to="/orders">
               Orders
               <i style={{ marginLeft: "6px" }} className="bi bi-list-check"></i>
             </Link>
-            <Link to="/wishlist">
+            <Link onClick={handleClose} to="/wishlist">
               Wishlist
               <i
                 style={{ marginLeft: "6px" }}
                 className="bi bi-person-lines-fill"
               ></i>
             </Link>
-            <Button onClick={() => signOut()} variant="danger">
+            <Button
+              onClick={() => {
+                handleClose();
+                signOut();
+              }}
+              variant="danger"
+            >
               Sign out
               <i
                 style={{ marginLeft: "6px" }}
