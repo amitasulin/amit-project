@@ -1,18 +1,6 @@
 .background-image-container {
-  background-image: url('../../assets/luxa.org-opacity-changed-ImageForNews_744910_16813559615181685.webp');
-  background-size:cover;
-    background-repeat:no-repeat;
-    background-position:center;
-    
-  }
-
-
-  .allPage {
-    text-align: center;
-    padding: 50px 200px 50px 200px;
-    background-image: url('../../assets/luxa.org-opacity-changed-ImageForNews_744910_16813559615181685.webp');
-    background-size: cover;
-    background-repeat: no-repeat;
-    
-
-  }
+  background-image: url("../../assets/bg.png");
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center;
+}

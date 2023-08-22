@@ -16,7 +16,7 @@ export default function Profile() {
               <div className="row">
                 <div className="col-md-4">
                   <img
-                    src={userData.profilePicture}
+                    src={userData?.profilePicture}
                     alt="User Avatar"
                     className="img-fluid rounded-circle"
                   />
