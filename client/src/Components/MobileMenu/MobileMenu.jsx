@@ -69,8 +69,7 @@ function MobileMenu() {
               Wishlist
               <i
                 style={{ marginLeft: "6px" }}
-                className="bi bi-person-lines-fill
-"
+                className="bi bi-person-lines-fill"
               ></i>
             </Link>
             <Button onClick={() => signOut()} variant="danger">

@@ -38,29 +38,28 @@ export default function Header() {
             margin: "auto",
           }}
         >
-          <Link to="/">
-            <div className="logo">
-              <img
-                className="img-fluid"
-                src={logo}
-                alt="logo"
-                style={{ height: "100px" }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  alignItems: "center",
-                  left: 20,
-                  top: 0,
-                  bottom: 0,
-                }}
-                className="d-flex d-lg-none"
-                onClick={() => setShowMobileMenu(!showMobileMenu)}
-              >
-                <span>☰</span>
-              </div>
+          <div className="logo">
+            <img
+              className="img-fluid"
+              src={logo}
+              alt="logo"
+              style={{ height: "100px" }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                alignItems: "center",
+                left: 20,
+                top: 0,
+                bottom: 0,
+                cursor: "pointer",
+              }}
+              className="d-flex d-lg-none"
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+            >
+              <span>☰</span>
             </div>
-          </Link>
+          </div>
         </Col>
         <Col
           style={{
