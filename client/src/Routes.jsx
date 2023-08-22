@@ -23,7 +23,7 @@ import ProductList from "./pages/productList/productList";
 import CreateEditProduct from "./pages/createEditProduct/createEditProduct";
 import ProductDetails from "./pages/productDetails/productDetails";
 import ContactUs from "./pages/contactUs/contactUs";
-import CartPage from "./pages/cart/CartPage";
+import CartPage from "./pages/cart/cartPage";
 import Users from "./pages/users/users";
 
 const InitialScreen = () => {

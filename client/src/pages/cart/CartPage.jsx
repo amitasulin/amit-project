@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./CartPage.css";
+import "./cartPage.css";
 import { UserContext } from "../../context/userContext";
 import { getData } from "../../services/userService";
 
