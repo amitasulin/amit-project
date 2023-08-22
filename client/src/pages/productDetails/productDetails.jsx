@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getStrainById } from "../../services/strainService";
 import "./productDetails.css";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
+import { useParams } from "react-router-dom";
 
 export default function ProductDetails(props) {
-  const { strainId } = props;
+  const { strainId } = useParams();
 
   const [strain, setStrain] = useState(null);
 
