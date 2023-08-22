@@ -14,7 +14,6 @@ import SignUpPage from "./pages/SignUpPage";
 import Layout from "./pages/Layout";
 import ShippingAndReturnPolicy from "./pages/ShippingAndReturnPolicy";
 import FAQ from "./pages/FAQ";
-import Users from "./components/Users/Users";
 import Wishlist from "./pages/wishlist/wishlist";
 import { MobileMenu } from "./components/MobileMenu/MobileMenu";
 import AboutPage from "./pages/AboutPage";
@@ -25,6 +24,7 @@ import CreateEditProduct from "./pages/createEditProduct/createEditProduct";
 import ProductDetails from "./pages/productDetails/productDetails";
 import ContactUs from "./pages/contactUs/contactUs";
 import CartPage from "./pages/cart/CartPage";
+import Users from "./pages/users/users";
 
 const InitialScreen = () => {
   const [isAllowed, setIsAllowed] = useState(localStorage.getItem("isAllowed"));
