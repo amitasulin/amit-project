@@ -23,9 +23,8 @@ import Wishlist from "../../Components/Wishlist/Wishlist";
 import { MobileMenu } from "../../Components/MobileMenu/MobileMenu";
 import AboutPage from "../../Components/Pages/AboutPage";
 import { useState } from "react";
-import Cart from "../../Components/Pages/Cart";
-import Orders from "../../Components/Pages/Orders";
 import Profile from "../../Components/Pages/Profile";
+import OrdersPage from "../../Components/Pages/OrdersPage";
 
 const InitialScreen = () => {
   const [isAllowed, setIsAllowed] = useState(localStorage.getItem("isAllowed"));
@@ -50,8 +49,8 @@ export default function Main() {
             <Route path="/strains" element={<AllStrains />} />
             <Route path="/newStrain" element={<NewStrain />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/orders" element={<Orders />} />
+            {/* <Route path="/cart" element={<Cart />} /> */}
+            <Route path="/orders" element={<OrdersPage />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/contactus" element={<ContactForm />} />

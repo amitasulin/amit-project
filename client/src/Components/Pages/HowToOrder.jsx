@@ -7,7 +7,7 @@ import "./HowToOrder.css";
 
 function HowToOrder() {
   return (
-    <Container fluid="lg">
+    <Container fluid="container-md">
       <CardGroup
         style={{
           margin: "auto",
@@ -15,6 +15,7 @@ function HowToOrder() {
           paddingBottom: "50px",
           width: "800px",
           display: "flex",
+          justifyContent: "center",
         }}
       >
         <Card>
