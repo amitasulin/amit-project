@@ -10,11 +10,9 @@ export default function ProtectedRoute(props) {
 
   const pleaseLogin = (
     <React.Fragment>
-      <p style={{ display: "none" }}>
-        You have to be logged in to view this content
-      </p>
+      <p>You have to be logged in to view this content</p>
 
-      <div style={{ display: "none" }}>
+      <div>
         Click <Link to="/signin"> here </Link> to login.{" "}
       </div>
     </React.Fragment>
@@ -22,9 +20,7 @@ export default function ProtectedRoute(props) {
 
   const notAllowed = (
     <React.Fragment>
-      <p style={{ display: "none" }}>
-        You dont have sufficent privilages to view this content
-      </p>
+      <p>You dont have sufficent privilages to view this content</p>
     </React.Fragment>
   );
 

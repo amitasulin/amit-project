@@ -15,9 +15,7 @@ root.render(
     <AppProvider>
       <StrainProvider>
         <Router>
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
+          <App />
         </Router>
       </StrainProvider>
     </AppProvider>
