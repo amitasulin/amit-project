@@ -6,13 +6,16 @@ import Pagination from "react-bootstrap/Pagination";
 import { useNavigate } from "react-router-dom";
 import { toggleWishlist, addToCart } from "../../services/userService";
 import { deleteStrain } from "../../services/strainService";
-import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
+import { UserContext } from "../../context/userContext";
 
 export default function ProductList() {
   const navigate = useNavigate();
   const { strains, page, totalPages, fetchAllStrains } =
     useContext(StrainContext);
 
+  const { userData } = useContext(UserContext);
+
+  const isAdmin = userData?.role === "admin";
   const items = [];
   for (let number = 1; number <= totalPages; number++) {
     items.push(
@@ -30,14 +33,15 @@ export default function ProductList() {
     <Container>
       <Row>
         <h1> All Strains</h1>
-        <ProtectedRoute allowedRoles={["admin"]}>
+
+        {isAdmin ? (
           <button
             onClick={() => navigate("/newStrain")}
             style={{ width: "100px", margin: "auto", borderRadius: "100px" }}
           >
             <i className="bi bi-file-earmark-plus"> Add new strain</i>
           </button>
-        </ProtectedRoute>
+        ) : null}
         <div
           style={{
             display: "flex",
@@ -54,7 +58,7 @@ export default function ProductList() {
           : strains.map((strain) => (
               <Col key={strain._id}>
                 <Card style={{ width: "18rem", borderRadius: "100px" }}>
-                  <ProtectedRoute allowedRoles={["admin"]}>
+                  {isAdmin ? (
                     <button
                       style={{
                         width: "100px",
@@ -65,7 +69,8 @@ export default function ProductList() {
                     >
                       <i className="bi bi-trash3"></i>
                     </button>
-                  </ProtectedRoute>
+                  ) : null}
+
                   <Card.Img
                     style={{ height: "230px", borderRadius: "100px" }}
                     variant="top"

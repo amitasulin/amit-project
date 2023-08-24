@@ -13,6 +13,7 @@ export default function Header() {
   const { fetchAllStrains } = useContext(StrainContext);
   const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
   const { userData, signOut } = useContext(UserContext);
+  const isAdmin = userData?.role === "admin";
 
   const navigate = useNavigate();
   const searchRef = useRef();
@@ -73,8 +74,10 @@ export default function Header() {
           <Link to="/">Home</Link>
           {" | "}
           <Link to="/strains">Products</Link>
-          {" | "}
-          <Link to="/users">Users</Link>
+
+          {isAdmin && " | "}
+          {isAdmin ? <Link to="/users">Users</Link> : null}
+
           {" | "}
           <Link to="/contactus">Contact Us</Link>
           {" | "}
