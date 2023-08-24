@@ -3,7 +3,8 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
-import { addStrain } from "../../services/strainService";
+import { addStrain, updateStrain } from "../../services/strainService";
+import { useLocation } from "react-router-dom";
 
 const INITIAL_STATE = {
   name: "",
@@ -17,10 +18,19 @@ const INITIAL_STATE = {
 };
 
 export default function CreateEditProduct() {
-  const [state, setState] = useState(INITIAL_STATE);
+  const params = useLocation();
+  const existingProduct = params.state;
+
+  console.log(existingProduct);
+  const isEdit = Boolean(existingProduct);
+  const [product, setProduct] = useState(existingProduct || INITIAL_STATE);
 
   const addNewStrain = async () => {
-    addStrain(state);
+    addStrain(product);
+  };
+
+  const updateExistStrain = async () => {
+    updateStrain(product);
   };
 
   return (
@@ -29,8 +39,8 @@ export default function CreateEditProduct() {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
           <Form.Control
-            value={state.name}
-            onChange={(e) => setState({ ...state, name: e.target.value })}
+            value={product.name}
+            onChange={(e) => setProduct({ ...product, name: e.target.value })}
             placeholder="Enter name"
           />
           <Form.Text className="text-muted">
@@ -40,27 +50,27 @@ export default function CreateEditProduct() {
 
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {state.type || "Select type"}
+            {product.type || "Select type"}
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
             <Dropdown.Item
               onClick={(e) =>
-                setState({ ...state, type: e.currentTarget.innerText })
+                setProduct({ ...product, type: e.currentTarget.innerText })
               }
             >
               Hybrid
             </Dropdown.Item>
             <Dropdown.Item
               onClick={(e) =>
-                setState({ ...state, type: e.currentTarget.innerText })
+                setProduct({ ...product, type: e.currentTarget.innerText })
               }
             >
               Sativa
             </Dropdown.Item>
             <Dropdown.Item
               onClick={(e) =>
-                setState({ ...state, type: e.currentTarget.innerText })
+                setProduct({ ...product, type: e.currentTarget.innerText })
               }
             >
               Indica
@@ -73,9 +83,9 @@ export default function CreateEditProduct() {
           <Form.Control
             as="textarea"
             rows={3}
-            value={state.description}
+            value={product.description}
             onChange={(e) =>
-              setState({ ...state, description: e.target.value })
+              setProduct({ ...product, description: e.target.value })
             }
             placeholder="Description"
           />
@@ -84,8 +94,8 @@ export default function CreateEditProduct() {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Price</Form.Label>
           <Form.Control
-            value={state.price}
-            onChange={(e) => setState({ ...state, price: e.target.value })}
+            value={product.price}
+            onChange={(e) => setProduct({ ...product, price: e.target.value })}
             placeholder="Price"
           />
         </Form.Group>
@@ -93,8 +103,10 @@ export default function CreateEditProduct() {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Thc Level</Form.Label>
           <Form.Control
-            value={state.thcLevel}
-            onChange={(e) => setState({ ...state, thcLevel: e.target.value })}
+            value={product.thcLevel}
+            onChange={(e) =>
+              setProduct({ ...product, thcLevel: e.target.value })
+            }
             placeholder="Thc Level"
           />
         </Form.Group>
@@ -102,20 +114,22 @@ export default function CreateEditProduct() {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>img_url</Form.Label>
           <Form.Control
-            value={state.img_url}
-            onChange={(e) => setState({ ...state, img_url: e.target.value })}
+            value={product.img_url}
+            onChange={(e) =>
+              setProduct({ ...product, img_url: e.target.value })
+            }
             placeholder="img_url"
           />
         </Form.Group>
         <Button
           onClick={(e) => {
             e.preventDefault();
-            addNewStrain();
+            isEdit ? updateExistStrain() : addNewStrain();
           }}
           variant="primary"
           type="submit"
         >
-          Submit
+          {isEdit ? "Save" : "Create"}
         </Button>
       </Form>
     </Container>

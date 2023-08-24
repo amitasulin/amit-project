@@ -65,6 +65,19 @@ export default function ProductList() {
                         margin: "auto",
                         borderRadius: "100px",
                       }}
+                      onClick={() => navigate(`/newStrain`, { state: strain })}
+                    >
+                      <i className="bi bi-trash3"></i>
+                    </button>
+                  ) : null}
+
+                  {isAdmin ? (
+                    <button
+                      style={{
+                        width: "100px",
+                        margin: "auto",
+                        borderRadius: "100px",
+                      }}
                       onClick={() => deleteStrain(strain._id)}
                     >
                       <i className="bi bi-trash3"></i>
