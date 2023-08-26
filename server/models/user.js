@@ -19,10 +19,12 @@ const userSchema = new mongoose.Schema({
       },
     ],
     required: true,
+    default: [],
   },
   wishlist: {
     type: [mongoose.Types.ObjectId],
     ref: "Strain",
+    default: [],
   },
   email: { type: String, unique: true, require: true },
   password: { type: String, require: true },

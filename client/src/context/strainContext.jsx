@@ -10,8 +10,6 @@ export const StrainProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchAllStrains = async ({ search = "", page = 1, filters }) => {
-    console.log(filters);
-
     const response = await getAllStrains({ search, page, filters });
     const strainsArray = response.data.data;
     const totalPages = response.data.totalPages;
@@ -26,7 +24,15 @@ export const StrainProvider = ({ children }) => {
 
   return (
     <StrainContext.Provider
-      value={{ strains, page, totalPages, fetchAllStrains, search, setSearch }}
+      value={{
+        strains,
+        setStrains,
+        page,
+        totalPages,
+        fetchAllStrains,
+        search,
+        setSearch,
+      }}
     >
       {children}
     </StrainContext.Provider>

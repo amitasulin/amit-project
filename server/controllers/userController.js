@@ -2,6 +2,36 @@ const Joi = require("joi");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "amitcannabisshop@gmail.com",
+    pass: process.env.pass,
+  },
+});
+
+const sendMail = async (req, res, next) => {
+  const { to, message } = req.body;
+
+  const mailOptions = {
+    from: "amitcannabisshop@gmail.com",
+    to: { to },
+    subject: "Mail from Amit`s cannabis shop",
+    text: { message },
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+      // do something useful
+    }
+  });
+};
+
 const getData = async (req, res) => {
   const user = req.user;
   try {
@@ -36,6 +66,8 @@ const addToCart = async (req, res, next) => {
   const strainId = params.strainId;
 
   const user = req.user;
+
+  console.log(user);
 
   const userFound = await User.findById(user.id);
 
@@ -259,4 +291,5 @@ module.exports = {
   addToCart,
   removeFromCart,
   getData,
+  sendMail,
 };

@@ -3,60 +3,111 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./contactUs.css";
+import { MyContainer } from "../../components/MyContainer";
+import Joi from "joi";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { sendMail } from "../../services/userService";
+
+const contactUsValidation = Joi.object({
+  name: Joi.string().min(2).max(20).required(),
+  email: Joi.string()
+    .regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+    .required(),
+  message: Joi.string().min(2).max(1024).required(),
+  city: Joi.string().min(2).max(20),
+  zip: Joi.number(),
+}).options({ allowUnknown: true });
 
 function ContactUs() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [city, setCity] = useState("");
+  const [zip, setZip] = useState("");
+
   return (
-    <Form>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
+    <MyContainer>
+      <Form style={{ maxWidth: 400 }} className="m-auto">
+        <Form.Group>
           <Form.Label>Full Name</Form.Label>
-          <Form.Control type="FullName" placeholder="Enter full name" />
+          <Form.Control
+            value={name}
+            onChange={(e) => setName(e.currentTarget.target)}
+            type="FullName"
+          />
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
+        <Form.Group>
           <Form.Label>Email</Form.Label>
-          <Form.Control type="Email" placeholder="Email" />
-        </Form.Group>
-      </Row>
-
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Address</Form.Label>
-        <Form.Control placeholder="1234 Main St" />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formGridAddress2">
-        <Form.Label>Address 2</Form.Label>
-        <Form.Control placeholder="Apartment, studio, or floor" />
-      </Form.Group>
-
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>City</Form.Label>
-          <Form.Control />
+          <Form.Control
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.target)}
+            type="Email"
+          />
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
-          </Form.Select>
+        <Form.Group className="mb-3">
+          <Form.Label>Your Message</Form.Label>
+          <Form.Control
+            value={message}
+            onChange={(e) => setMessage(e.currentTarget.target)}
+            style={{ maxHeight: 200 }}
+            as="textarea"
+          />
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Zip</Form.Label>
-          <Form.Control />
+        <Row className="mb-3">
+          <Form.Group as={Col}>
+            <Form.Label>City</Form.Label>
+            <Form.Control
+              value={city}
+              onChange={(e) => setCity(e.currentTarget.target)}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col}>
+            <Form.Label>Zip</Form.Label>
+            <Form.Control
+              value={zip}
+              onChange={(e) => setZip(e.currentTarget.target)}
+            />
+          </Form.Group>
+        </Row>
+
+        <Form.Group className="mb-3 d-flex justify-content-center">
+          <Form.Check type="checkbox" label="I am a human" />
         </Form.Group>
-      </Row>
 
-      <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label=" I agree to  terms and conditions" />
-      </Form.Group>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            const isValid = contactUsValidation.validate({
+              name,
+              email,
+              message,
+              city,
+              zip,
+            });
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+            if (!isValid) {
+              toast.error("Form validation failed");
+            } else {
+              try {
+                sendMail(email, message);
+                toast.success("Mail sent successfully");
+              } catch (e) {
+                toast.error("Mail sending error");
+              }
+            }
+          }}
+          variant="primary"
+          type="submit"
+        >
+          Submit
+        </Button>
+      </Form>
+    </MyContainer>
   );
 }
 

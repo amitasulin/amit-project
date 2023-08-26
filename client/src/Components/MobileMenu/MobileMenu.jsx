@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { AppContext } from "../../context/appContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { Button } from "react-bootstrap";
 import logo from "../../assets/608dbc866bdc4afcb272cb70110c9015.png";
@@ -14,6 +14,7 @@ function MobileMenu() {
   const handleClose = () => setShowMobileMenu(false);
   const { userData, signOut } = useContext(UserContext);
 
+  const navigate = useNavigate();
   return (
     <>
       <Offcanvas
@@ -49,7 +50,11 @@ function MobileMenu() {
             <Link onClick={handleClose} to="/contactus">
               Contact Us
             </Link>
-            {isLoggedIn ? null : <Link to="/signin">Sign In</Link>}
+            {isLoggedIn ? null : (
+              <Link onClick={handleClose} to="/signin">
+                Sign In
+              </Link>
+            )}
             <Link onClick={handleClose} to="/profile">
               {userData?.firstName}
               <i
@@ -76,6 +81,7 @@ function MobileMenu() {
               onClick={() => {
                 handleClose();
                 signOut();
+                navigate("/");
               }}
               variant="danger"
             >

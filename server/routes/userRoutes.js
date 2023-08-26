@@ -10,6 +10,7 @@ const {
   addToCart,
   removeFromCart,
   getData,
+  sendMail,
 } = require("../controllers/userController");
 const {
   authenticateUser,
@@ -26,5 +27,7 @@ router.delete("/:id", authenticateUser, authorizeUser(["admin"]), deleteUser);
 router.post("/wishlist/:strainId", authenticateUser, toggleWishlist);
 router.post("/cart", authenticateUser, addToCart);
 router.delete("/cart", authenticateUser, removeFromCart);
+
+router.post("/sendMail", authenticateUser, sendMail);
 
 module.exports = router;

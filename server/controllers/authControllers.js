@@ -76,7 +76,9 @@ const signInValidation = Joi.object({
 const signIn = async (req, res) => {
   const { email, password } = req.body;
 
-  if (signInValidation.validate().error) {
+  const isValid = signInValidation.validate({ email, password });
+  if (isValid.error) {
+    console.log(isValid.error);
     res.status(400).json({ error: "Validation failed" });
   }
 
@@ -117,6 +119,7 @@ const signIn = async (req, res) => {
 
     res.status(200).json(payload);
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: "Cannot sign you in" });
   }
 };

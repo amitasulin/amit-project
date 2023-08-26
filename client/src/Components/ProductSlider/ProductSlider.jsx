@@ -29,7 +29,7 @@ const ProductSlider = () => {
             <span style={{ marginRight: "12px" }} className="font18">
               {product.type}
             </span>
-            <span className="font18">{product.thcLevel}</span>
+            <span className="font18">{product.thcLevel + "%"}</span>
           </div>
         </Carousel.Item>
       ))}

@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import "./productList.css";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { toggleWishlist, addToCart } from "../../services/userService";
 import { deleteStrain } from "../../services/strainService";
 import { UserContext } from "../../context/userContext";
+import { toast } from "react-toastify";
 
-export const Product = (props) => {
-  const { strain } = props;
+export const Product = ({ product, isPreview }) => {
+  const strain = product;
   const { userData } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ export const Product = (props) => {
   return (
     <div className="col  d-flex justify-content-center mb-5" key={strain._id}>
       <Card style={{ width: "18rem" }}>
-        {isAdmin ? (
+        {isPreview ? null : isAdmin ? (
           <div className="d-flex flex-row">
             <Button
               style={{
@@ -66,7 +66,7 @@ export const Product = (props) => {
         >
           <ListGroup.Item>{strain.price + "$"}</ListGroup.Item>
           <ListGroup.Item>{strain.type}</ListGroup.Item>
-          <ListGroup.Item>{strain.thcLevel}</ListGroup.Item>
+          <ListGroup.Item>{strain.thcLevel + "%"}</ListGroup.Item>
         </ListGroup>
         <Card.Body>
           <Card.Link href={`/strains/${strain._id}`}>
@@ -74,13 +74,27 @@ export const Product = (props) => {
           </Card.Link>
           <Card.Link
             style={{ cursor: "pointer" }}
-            onClick={() => toggleWishlist(strain._id)}
+            onClick={() => {
+              try {
+                toggleWishlist(strain._id);
+                toast.success("Added a strain to the wishlist");
+              } catch (e) {
+                toast.error("Failed to add a strain to the wishlist");
+              }
+            }}
           >
             <i className="bi bi-bag-check"> Add to wishlist</i>
           </Card.Link>
           <Card.Link
             style={{ cursor: "pointer" }}
-            onClick={() => addToCart(strain._id, 1)}
+            onClick={() => {
+              try {
+                addToCart(strain._id, 1);
+                toast.success("Added a strain to the cart");
+              } catch (e) {
+                toast.error("Failed to add a strain to the cart");
+              }
+            }}
           >
             <i className="bi bi-cart">Add to cart</i>
           </Card.Link>

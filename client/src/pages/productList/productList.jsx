@@ -1,18 +1,8 @@
-import React, { useContext, useRef, useState } from "react";
-import "./productList.css";
+import React, { useContext, useState } from "react";
 import { StrainContext } from "../../context/strainContext";
-import {
-  Button,
-  Card,
-  Form,
-  InputGroup,
-  ListGroup,
-  Modal,
-} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Pagination from "react-bootstrap/Pagination";
 import { useNavigate } from "react-router-dom";
-import { toggleWishlist, addToCart } from "../../services/userService";
-import { deleteStrain } from "../../services/strainService";
 import { UserContext } from "../../context/userContext";
 import { MyContainer } from "../../components/MyContainer";
 import { Product } from "./Product";
@@ -20,17 +10,11 @@ import FilterModal from "./FilterModal";
 
 export default function ProductList() {
   const navigate = useNavigate();
-  const { strains, page, totalPages, fetchAllStrains, search } =
+  const { strains, page, totalPages, fetchAllStrains } =
     useContext(StrainContext);
 
   const [showFilters, setShowFilters] = useState(false);
   const { userData } = useContext(UserContext);
-
-  const [filters, setFilters] = useState({
-    price: [],
-    thc: [],
-    type: undefined,
-  });
 
   const isAdmin = userData?.role === "admin";
   const items = [];
@@ -91,7 +75,9 @@ export default function ProductList() {
             >
               {!strains
                 ? "Loading strains, please wait..."
-                : strains.map((strain) => <Product strain={strain} />)}
+                : strains.map((strain) => (
+                    <Product key={strain._id} product={strain} />
+                  ))}
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Pagination>{items}</Pagination>

@@ -17,19 +17,8 @@ const strainSchema = new mongoose.Schema({
   img_url: {
     type: String,
   },
-  most_common_terpene: {
-    type: String,
-  },
   thcLevel: {
-    type: String,
-  },
-  rating: {
     type: Number,
-    min: 0,
-    max: 5,
-  },
-  effects: {
-    type: [String],
   },
   price: {
     type: Number,

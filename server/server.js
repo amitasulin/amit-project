@@ -34,24 +34,11 @@ connectDatabase();
 //refresh auth token (if exist)
 app.use(refreshAuthTokenCookie);
 
-const sendMail = async (req, res, next) => {
-  try {
-    const order = await Order.findByIdAndRemove(new ObjectId(req.params.id));
-    if (!order) {
-      res.status(404).json({ error: "Order not found" });
-    }
-    res.status(200).json({ deleted: order });
-  } catch (error) {
-    next(error);
-  }
-};
-
 //Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/strains", strainRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/sendMail", authenticateUser, sendMail);
 
 // error handler middleware
 app.use(errorHandler);

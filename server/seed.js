@@ -49,7 +49,7 @@ const seedStrains = async () => {
     let seedStrainsJsonWithPrice = seedStrainsJson.map((strain) => ({
       ...strain,
       price: Math.floor(getRandomArbitrary(15, 40)),
-      thcLevel: strain.thc_level,
+      thcLevel: Number(strain.thc_level.replace("%", "")),
     }));
 
     await Strain.create(seedStrainsJsonWithPrice);

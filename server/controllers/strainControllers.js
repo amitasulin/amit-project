@@ -6,14 +6,18 @@ const { ObjectId } = mongoose.Types;
 
 // validation schema for user data
 
-const strainSchema = Joi.object({
-  name: Joi.string().required(),
-  type: Joi.string().required(),
-  description: Joi.string().required(),
-  img_url: Joi.string(),
-  mostCommonTerpene: Joi.string(),
-  thcLevel: Joi.number(),
-});
+const strainValidation = Joi.object({
+  name: Joi.string().min(2).max(20).required(),
+  type: Joi.string().valid("Hybrid", "Sativa", "Indica").required(),
+  description: Joi.string().min(2).max(1024).required(),
+  img_url: Joi.string()
+    .regex(
+      /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/
+    )
+    .required(),
+  thcLevel: Joi.number().min(0).max(50),
+  price: Joi.number().min(1).max(100),
+}).options({ allowUnknown: true });
 
 const getAll = async (req, res, next) => {
   try {
@@ -38,18 +42,17 @@ const getAll = async (req, res, next) => {
       price: { $gte: prices[0] || 0, $lte: prices[1] || 100 },
     };
 
-    /*    const thcs = thc.split(",");
+    const thcs = thc.split(",");
     const thcFilter = {
-      thc: { $gte: thcs[0] || 0, $lte: thcs[1] || 100 },
+      thcLevel: { $gte: thcs[0] || 0, $lte: thcs[1] || 100 },
     };
- */
+
     const strains = await Strain.paginate(
       {
         name: { $regex: search, $options: "i" },
         ...priceFilter,
         type: { $regex: type, $options: "i" },
-        /*         ...thcFilter,
-         */
+        ...thcFilter,
       },
       options
     );
@@ -79,11 +82,11 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    /*     const { error } = strainSchema.validate(req.body);
+    const { error } = strainValidation.validate(req.body);
     if (error) {
       console.log(error.details[0].message);
       return res.status(400).json({ error: error.details[0].message });
-    } */
+    }
 
     const strain = await Strain.create(req.body);
     res.status(200).json({ created: strain });
@@ -95,9 +98,10 @@ const create = async (req, res, next) => {
 
 const updateById = async (req, res, next) => {
   try {
-    const { error } = userSchema.validate(req.body);
+    const { error } = strainValidation.validate(req.body);
 
     if (error) {
+      console.log(error.details[0].message);
       return res.status(400).json({ error: error.details[0].message });
     }
 

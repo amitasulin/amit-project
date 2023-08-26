@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import "./productList.css";
 import { StrainContext } from "../../context/strainContext";
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 
@@ -28,9 +27,9 @@ export default function FilterModal({ showFilters, setShowFilters }) {
             aria-label="Default select example"
           >
             <option></option>
-            <option value="hybrid">Hybrid</option>
-            <option value="sativa">Sativa</option>
-            <option value="indica">Indica</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Sativa">Sativa</option>
+            <option value="Indica">Indica</option>
           </Form.Select>
         </InputGroup>
         <InputGroup className="mb-3 w-auto">

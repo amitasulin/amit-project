@@ -47,3 +47,11 @@ export async function getData() {
   const response = http.get(`http://localhost:5000/api/users/userData/`);
   return response;
 }
+
+export async function sendMail(to, message) {
+  const response = http.post(`http://localhost:5000/api/sendMail/`, {
+    to,
+    message,
+  });
+  return response;
+}
