@@ -1,9 +1,13 @@
 import http from "./httpService";
 
-export async function getAllStrains(queryParams) {
+export async function getAllStrains({ search = "", page = 1, filters = {} }) {
   // get and return a list of strains from our server
 
-  const queryString = new URLSearchParams(queryParams);
+  const queryString = new URLSearchParams({
+    search,
+    page,
+    ...filters,
+  });
   const response = http.get(`http://localhost:5000/api/strains?${queryString}`);
   return response;
 }

@@ -1,7 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./productList.css";
 import { StrainContext } from "../../context/strainContext";
-import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Form,
+  InputGroup,
+  ListGroup,
+  Modal,
+} from "react-bootstrap";
 import Pagination from "react-bootstrap/Pagination";
 import { useNavigate } from "react-router-dom";
 import { toggleWishlist, addToCart } from "../../services/userService";
@@ -11,17 +18,24 @@ import { MyContainer } from "../../components/MyContainer";
 
 export default function ProductList() {
   const navigate = useNavigate();
-  const { strains, page, totalPages, fetchAllStrains } =
+  const { strains, page, totalPages, fetchAllStrains, search } =
     useContext(StrainContext);
 
+  const [showFilters, setShowFilters] = useState(false);
   const { userData } = useContext(UserContext);
+
+  const [filters, setFilters] = useState({
+    price: [],
+    thc: [],
+    type: undefined,
+  });
 
   const isAdmin = userData?.role === "admin";
   const items = [];
   for (let number = 1; number <= totalPages; number++) {
     items.push(
       <Pagination.Item
-        onClick={() => fetchAllStrains("", number)}
+        onClick={() => fetchAllStrains({ search: "", page: number })}
         key={number}
         active={number === page}
       >
@@ -32,8 +46,104 @@ export default function ProductList() {
 
   return (
     <MyContainer>
-      <div className="d-flex flex-column ">
+      <div style={{ padding: "0px 40px" }} className="d-flex flex-column">
         <h1>All Strains</h1>
+        <Button
+          onClick={() => setShowFilters(!showFilters)}
+          className="m-auto mb-3"
+        >
+          {showFilters ? "Hide " : "Show "}Filters
+        </Button>
+        {showFilters ? (
+          <Modal onHide={() => setShowFilters(false)} show={showFilters}>
+            <div
+              style={{ padding: 50 }}
+              className="d-flex flex-column align-items-center justify-content-around flex-wrap"
+            >
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon2">Type</InputGroup.Text>
+                <Form.Select
+                  onChange={(e) =>
+                    setFilters({ ...filters, type: e.currentTarget.value })
+                  }
+                  value={filters.type}
+                  aria-label="Default select example"
+                >
+                  <option value={undefined}>All</option>
+                  <option value="hybrid">Hybrid</option>
+                  <option value="sativa">Sativa</option>
+                  <option value="indica">Indica</option>
+                </Form.Select>
+              </InputGroup>
+              <InputGroup className="mb-3 w-auto">
+                <InputGroup.Text id="basic-addon1">Price</InputGroup.Text>
+
+                <InputGroup.Text id="basic-addon1">From</InputGroup.Text>
+                <Form.Control
+                  onChange={(e) =>
+                    setFilters({
+                      ...filters,
+                      price: [e.currentTarget.value, filters.price[1]],
+                    })
+                  }
+                  value={filters.price[0]}
+                  type="number"
+                  aria-label="Start price"
+                  aria-describedby="basic-addon1"
+                />
+                <InputGroup.Text id="basic-addon2">To</InputGroup.Text>
+                <Form.Control
+                  onChange={(e) =>
+                    setFilters({
+                      ...filters,
+                      price: [filters.price[0], e.currentTarget.value],
+                    })
+                  }
+                  value={filters.price[1]}
+                  type="number"
+                  aria-label="End price"
+                  aria-describedby="basic-addon2"
+                />
+              </InputGroup>
+
+              <InputGroup className=" mb-3 w-auto">
+                <InputGroup.Text id="basic-addon1">THC</InputGroup.Text>
+
+                <InputGroup.Text id="basic-addon1">From</InputGroup.Text>
+                <Form.Control
+                  onChange={(e) =>
+                    setFilters({
+                      ...filters,
+                      thc: [e.currentTarget.value, filters.thc[1]],
+                    })
+                  }
+                  value={filters.thc[0]}
+                  type="number"
+                  aria-label="Start THC"
+                  aria-describedby="basic-addon1"
+                />
+                <InputGroup.Text id="basic-addon2">To</InputGroup.Text>
+                <Form.Control
+                  onChange={(e) =>
+                    setFilters({
+                      ...filters,
+                      thc: [filters.thc[0], e.currentTarget.value],
+                    })
+                  }
+                  value={filters.thc[1]}
+                  type="number"
+                  aria-label="End THC"
+                  aria-describedby="basic-addon2"
+                />
+              </InputGroup>
+
+              <Button onClick={() => fetchAllStrains({ search, filters })}>
+                Filter
+              </Button>
+            </div>
+          </Modal>
+        ) : null}
+
         {isAdmin ? (
           <Button
             onClick={() => navigate("/newStrain")}

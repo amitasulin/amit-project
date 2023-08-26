@@ -10,7 +10,7 @@ import logo from "../../assets/608dbc866bdc4afcb272cb70110c9015.png";
 
 export default function Header() {
   const { isLoggedIn } = useContext(UserContext);
-  const { fetchAllStrains } = useContext(StrainContext);
+  const { fetchAllStrains, setSearch } = useContext(StrainContext);
   const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
   const { userData, signOut } = useContext(UserContext);
   const isAdmin = userData?.role === "admin";
@@ -22,7 +22,9 @@ export default function Header() {
   const searchRef = useRef();
 
   const onSearch = async () => {
-    await fetchAllStrains(searchRef.current.value);
+    const searchVal = searchRef.current.value;
+    await fetchAllStrains({ search: searchVal });
+    setSearch(searchVal);
     navigate("/strains");
   };
 

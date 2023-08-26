@@ -17,7 +17,14 @@ const strainSchema = Joi.object({
 
 const getAll = async (req, res, next) => {
   try {
-    const { page = 1, limit = 12, search = "" } = req.query;
+    const {
+      page = 1,
+      limit = 12,
+      search = "",
+      price = ",",
+      thc = ",",
+      type,
+    } = req.query;
 
     if (limit > 50) limit = 50;
 
@@ -26,8 +33,24 @@ const getAll = async (req, res, next) => {
       limit: parseInt(limit),
     };
 
+    const prices = price.split(",");
+    const priceFilter = {
+      price: { $gte: prices[0] || 0, $lte: prices[1] || 100 },
+    };
+
+    /*    const thcs = thc.split(",");
+    const thcFilter = {
+      thc: { $gte: thcs[0] || 0, $lte: thcs[1] || 100 },
+    };
+ */
     const strains = await Strain.paginate(
-      { name: { $regex: search, $options: "i" } },
+      {
+        name: { $regex: search, $options: "i" },
+        ...priceFilter,
+        type: { $regex: type, $options: "i" },
+        /*         ...thcFilter,
+         */
+      },
       options
     );
 
