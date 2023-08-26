@@ -47,6 +47,11 @@ function MobileMenu() {
             <Link onClick={handleClose} to="/users">
               Users
             </Link>
+
+            <Link onClick={handleClose} to="/about">
+              About Us
+            </Link>
+
             <Link onClick={handleClose} to="/contactus">
               Contact Us
             </Link>

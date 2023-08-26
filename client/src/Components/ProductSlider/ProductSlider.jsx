@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Carousel, Row } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import "./ProductSlider.css";
 import { StrainContext } from "../../context/strainContext";
 const ProductSlider = () => {

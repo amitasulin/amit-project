@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 //components
 import Footer from "./components/Footer/Footer";
