@@ -8,6 +8,7 @@ import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./SignInForm.css";
+import { toast } from "react-toastify";
 
 export default function SignInForm() {
   const navigate = useNavigate();
@@ -19,41 +20,46 @@ export default function SignInForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signIn(email, password);
-    return navigate("/");
+    try {
+      await signIn(email, password);
+      navigate("/");
+      toast.success("Welcome back!", { position: "bottom-right" });
+    } catch (e) {
+      toast.error("Failed to sign in", { position: "bottom-right" });
+    }
   };
 
   return (
     <div className="signInForm">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label className="font18">Email address</Form.Label>
           <Form.Control
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Enter email"
+            className="mb-2"
           />
-          <Form.Text className="text-muted">
+          <Form.Text className="font18">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="font18">Password</Form.Label>
           <Form.Control
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
         <Button className="submitButton" variant="primary" type="submit">
           Submit
-        </Button>{" "}
+        </Button>
         <br></br>
         <br></br>
-        <Link to="/signup">Not registered? Sign me up</Link>
+        <Link className="font18" to="/signup">
+          Not registered? Sign me up
+        </Link>
       </Form>
     </div>
   );

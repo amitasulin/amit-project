@@ -1,6 +1,5 @@
-
-.signInForm{
-    padding: 0px 50px 0px 50px;
-    max-width: 400px;
-    margin: auto;
+.signInForm {
+  padding: 50px 50px 50px 50px;
+  max-width: 700px;
+  margin: 0 auto;
 }

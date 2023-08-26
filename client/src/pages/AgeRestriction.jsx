@@ -1,58 +1,69 @@
-import React, { useState } from "react";
+import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import img from "../assets/Cannabis-Age-Restrictions.webp";
-const AgeRestriction = ({ setIsAllowed }) => {
-  const [age, setAge] = useState("");
+import { Form, Button } from "react-bootstrap";
+import { AppContext } from "../context/appContext";
+import { MyContainer } from "../components/MyContainer";
 
+function diff_years(dt2, dt1) {
+  var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+  diff /= 60 * 60 * 24;
+  return Math.abs(Math.round(diff / 365.25));
+}
+
+const AgeRestriction = () => {
   const navigate = useNavigate();
-  const handleAgeChange = (event) => {
-    setAge(event.target.value);
-  };
 
-  const handleCheckAge = () => {
-    const parsedAge = parseInt(age, 10);
-    if (parsedAge >= 18) {
-      localStorage.setItem("isAllowed", "true");
+  const ageRef = useRef(null);
+
+  const { setIsAdult } = useContext(AppContext);
+
+  const handleCheckAge = (e) => {
+    const now = new Date();
+    const selectedDate = new Date(ageRef.current.value);
+    const age = diff_years(now, selectedDate);
+    if (age >= 18) {
+      localStorage.setItem("isAdult", "true");
       navigate("/");
-      setIsAllowed(true);
+      setIsAdult(true);
     } else {
-      setIsAllowed(false);
+      setIsAdult(false);
     }
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
-        maxWidth: "500px",
-        margin: "auto",
-        paddingBottom: "50px",
-      }}
-    >
-      <h1>Age Restriction</h1>
-      <img
-        className="img-fluid"
-        src={img}
-        alt="logo"
-        style={{ height: "300px" }}
-      />
-      <p>
-        You must be 18 years of age or older to access this website and/or to
-        purchase non-medical cannabis.{" "}
-      </p>
-      <p>
-        Products on this website will only be delivered to addresses within the
-        Province of New found land and Labrador{" "}
-      </p>
-      <label htmlFor="age-input">Enter your age:</label>
-      <input
-        id="age-input"
-        type="number"
-        value={age}
-        onChange={handleAgeChange}
-      />{" "}
-      <button onClick={handleCheckAge}>Check Age</button>
-    </div>
+    <MyContainer>
+      <div
+        style={{
+          maxWidth: "500px",
+          margin: "auto",
+          display: "flex",
+          height: "100%",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
+        <img
+          className="img-fluid"
+          src={img}
+          alt="logo"
+          style={{ width: 300 }}
+        />
+        <p className="font18">
+          You must be 18 years of age or older to access this website and/or to
+          purchase non-medical cannabis.
+        </p>
+        <div style={{ maxWidth: 250 }}>
+          <Form.Label className="font18">
+            Please enter your birthdate
+          </Form.Label>
+          <Form.Control ref={ageRef} type="date" />
+        </div>
+
+        <Button onClick={handleCheckAge}>Submit</Button>
+      </div>
+    </MyContainer>
   );
 };
 

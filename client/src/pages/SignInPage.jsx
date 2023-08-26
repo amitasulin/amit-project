@@ -1,11 +1,11 @@
 import React from "react";
 import SignInForm from "../components/SigninForm/SignInForm";
+import { MyContainer } from "../components/MyContainer";
 
 export default function SignInPage() {
   return (
-    <div className="Sign In Page">
-      <div className="title"> Signin Page </div>
+    <MyContainer>
       <SignInForm />
-    </div>
+    </MyContainer>
   );
 }

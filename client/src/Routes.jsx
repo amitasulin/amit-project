@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 //components
 import Footer from "./components/Footer/Footer";
@@ -25,12 +25,15 @@ import ProductDetails from "./pages/productDetails/productDetails";
 import ContactUs from "./pages/contactUs/contactUs";
 import CartPage from "./pages/cart/cartPage";
 import Users from "./pages/users/users";
+import { AppContext } from "./context/appContext";
 
 const InitialScreen = () => {
-  const [isAllowed, setIsAllowed] = useState(localStorage.getItem("isAllowed"));
-  if (isAllowed) return <HomePage />;
+  const isAdultStorage = localStorage.getItem("isAdult");
+  const { isAdult } = useContext(AppContext);
+
+  if (isAdult || isAdultStorage) return <HomePage />;
   else {
-    return <AgeRestriction setIsAllowed={setIsAllowed} />;
+    return <AgeRestriction />;
   }
 };
 

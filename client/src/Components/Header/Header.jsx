@@ -15,6 +15,9 @@ export default function Header() {
   const { userData, signOut } = useContext(UserContext);
   const isAdmin = userData?.role === "admin";
 
+  const { isAdult } = useContext(AppContext);
+  const isAdultStorage = localStorage.getItem("isAdult");
+
   const navigate = useNavigate();
   const searchRef = useRef();
 
@@ -23,14 +26,18 @@ export default function Header() {
     navigate("/strains");
   };
 
+  if (!isAdult && !isAdultStorage) {
+    return null;
+  }
+
   return (
     <div className="Header">
       <div
         className="d-flex flex-row flex-wrap"
         style={{
-          padding: "20px 40px",
           justifyContent: "space-between",
           position: "relative",
+          padding: "20px 40px",
         }}
       >
         <Col
@@ -86,7 +93,7 @@ export default function Header() {
 
         <Col
           style={{
-            marginLeft: "20px",
+            margin: "auto 20px",
             maxWidth: "450px",
             minWidth: "300px",
             display: "flex",
@@ -114,10 +121,7 @@ export default function Header() {
           </Form>
         </Col>
 
-        <Col
-          className="d-none d-lg-block"
-          style={{ margin: "auto auto auto 20px" }}
-        >
+        <Col className="d-none d-lg-block" style={{ margin: "auto" }}>
           {isLoggedIn ? (
             <div className="LoggedIn">
               <Link to="/profile">
