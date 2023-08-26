@@ -13,13 +13,17 @@ function HowToOrder() {
           margin: "auto",
           paddingTop: "50px",
           paddingBottom: "50px",
-          width: "800px",
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "center",
         }}
       >
         <Card>
-          <Card.Img variant="top" src={orderImg} style={{ height: "200px" }} />
+          <Card.Img
+            variant="top"
+            src={orderImg}
+            style={{ height: "200px", aspectRatio: 1 }}
+          />
           <Card.Body>
             <Card.Title>Order up to 30 grams of products</Card.Title>
             <Card.Text>

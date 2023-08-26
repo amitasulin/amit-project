@@ -2,10 +2,31 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const { generateToken } = require("../config/jwt");
 const { AUTH_MAX_AGE } = process.env;
+const Joi = require("joi");
+
+const signUpValidation = Joi.object({
+  firstName: Joi.string().min(2).required(),
+  lastName: Joi.string().min(2).required(),
+  email: Joi.string()
+    .regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+    .required(),
+  password: Joi.string().min(6).max(20).required(),
+});
 
 const signUp = async (req, res) => {
-  ///....new user sign-up
-  const { firstName, lastName, email, password, profilePicture } = req.body;
+  const { firstName, lastName, email, password } = req.body;
+
+  const isValid = signUpValidation.validate({
+    firstName,
+    lastName,
+    email,
+    password,
+  });
+
+  if (isValid.error) {
+    console.log(isValid.error);
+    return res.status(400).json({ error: "Validation failed" });
+  }
 
   try {
     //check if user already exists
@@ -24,15 +45,12 @@ const signUp = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      profilePicture,
     });
 
     const payload = {
       id: newUser.id,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
-      role: newUser.role,
-      profilePicture: newUser.profilePicture,
     };
 
     const token = await generateToken(payload);
@@ -48,8 +66,19 @@ const signUp = async (req, res) => {
   }
 };
 
+const signInValidation = Joi.object({
+  email: Joi.string()
+    .regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+    .required(),
+  password: Joi.string().min(6).max(20).required(),
+});
+
 const signIn = async (req, res) => {
   const { email, password } = req.body;
+
+  if (signInValidation.validate().error) {
+    res.status(400).json({ error: "Validation failed" });
+  }
 
   try {
     // check if user exist in db

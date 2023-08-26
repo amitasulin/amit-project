@@ -151,7 +151,10 @@ export default function Header() {
               </Link>
               <Button
                 style={{ position: "absolute", bottom: -40, right: 0 }}
-                onClick={() => signOut()}
+                onClick={() => {
+                  signOut();
+                  navigate("/");
+                }}
                 variant="danger"
               >
                 Sign out
