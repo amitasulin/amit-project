@@ -23,7 +23,7 @@ const getAll = async (req, res, next) => {
       search = "",
       price = ",",
       thc = ",",
-      type,
+      type = "",
     } = req.query;
 
     if (limit > 50) limit = 50;
