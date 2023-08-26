@@ -26,6 +26,7 @@ function ContactUs() {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
 
+  console.log(name);
   return (
     <MyContainer>
       <Form style={{ maxWidth: 400 }} className="m-auto">
@@ -34,7 +35,6 @@ function ContactUs() {
           <Form.Control
             value={name}
             onChange={(e) => setName(e.currentTarget.target)}
-            type="FullName"
           />
         </Form.Group>
 
@@ -43,7 +43,6 @@ function ContactUs() {
           <Form.Control
             value={email}
             onChange={(e) => setEmail(e.currentTarget.target)}
-            type="Email"
           />
         </Form.Group>
 
@@ -94,6 +93,7 @@ function ContactUs() {
               toast.error("Form validation failed");
             } else {
               try {
+                console.log(email, message);
                 sendMail(email, message);
                 toast.success("Mail sent successfully");
               } catch (e) {

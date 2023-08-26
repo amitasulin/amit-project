@@ -8,28 +8,23 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "amitcannabisshop@gmail.com",
-    pass: process.env.pass,
+    pass: process.env.MAILER_PASS,
   },
 });
 
 const sendMail = async (req, res, next) => {
   const { to, message } = req.body;
 
+  console.log(req.body);
   const mailOptions = {
     from: "amitcannabisshop@gmail.com",
-    to: { to },
+    to,
     subject: "Mail from Amit`s cannabis shop",
     text: { message },
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-      // do something useful
-    }
-  });
+  /*   transporter.sendMail(mailOptions);
+   */
 };
 
 const getData = async (req, res) => {

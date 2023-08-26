@@ -49,7 +49,7 @@ export async function getData() {
 }
 
 export async function sendMail(to, message) {
-  const response = http.post(`http://localhost:5000/api/sendMail/`, {
+  const response = http.post(`http://localhost:5000/api/users/sendMail/`, {
     to,
     message,
   });
