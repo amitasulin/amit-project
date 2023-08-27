@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import http from "../services/httpService";
 import jwtDecode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 

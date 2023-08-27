@@ -8,6 +8,7 @@ import Joi from "joi";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { sendMail } from "../../services/userService";
+import img from "../../assets/ContactUs-960x555.jpg";
 
 const contactUsValidation = Joi.object({
   name: Joi.string().min(2).max(20).required(),
@@ -26,10 +27,11 @@ function ContactUs() {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
 
-  console.log(name);
   return (
     <MyContainer>
       <Form style={{ maxWidth: 400 }} className="m-auto">
+        <img className="img-fluid" src={img} alt="logo" />
+
         <Form.Group>
           <Form.Label>Full Name</Form.Label>
           <Form.Control

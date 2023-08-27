@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { getAllUsers } from "../../services/userService";
+import { getAllUsers, deleteUser } from "../../services/userService";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 import { toast } from "react-toastify";
+import { MyContainer } from "../../components/MyContainer";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -23,30 +24,42 @@ export default function Users() {
 
   return (
     <ProtectedRoute allowedRoles={["admin"]}>
-      <Container>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <td>{index + 1}</td>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
+      <MyContainer>
+        <Container style={{ paddingTop: "50px" }}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Role</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Container>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={user._id}>
+                  <td>{index + 1}</td>
+                  <td>{user.firstName}</td>
+                  <td>{user.lastName}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
+                  <td style={{ width: "18rem" }}>
+                    <Button
+                      className="bi bi-trash3"
+                      style={{
+                        margin: "auto",
+                        borderRadius: "100px",
+                      }}
+                      onClick={() => deleteUser(user._id)}
+                    ></Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Container>
+      </MyContainer>
     </ProtectedRoute>
   );
 }

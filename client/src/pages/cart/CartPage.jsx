@@ -3,12 +3,6 @@ import "./cartPage.css";
 import { UserContext } from "../../context/userContext";
 import { getData } from "../../services/userService";
 
-const initialOrders = [
-  { id: 1, product: "Product 1", quantity: 2 },
-  { id: 2, product: "Product 2", quantity: 3 },
-  { id: 3, product: "Product 3", quantity: 1 },
-];
-
 function CartPage() {
   const [cart, setCart] = useState([]);
 
@@ -23,7 +17,7 @@ function CartPage() {
   }, []);
 
   return (
-    <div className="OrdersPage">
+    <div className="CartPage">
       <h1>Cart Page</h1>
       <table>
         <thead>
@@ -32,6 +26,7 @@ function CartPage() {
             <th>Product name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Image </th>
             <th>Total</th>
           </tr>
         </thead>
@@ -42,6 +37,12 @@ function CartPage() {
               <td>{item.strainId.name}</td>
               <td>{item.strainId.price + "$"}</td>
               <td>{item.quantity}</td>
+              <img
+                className="poster"
+                src={item.strainId.img_url}
+                alt="strain poster"
+              />
+
               <td>
                 {Number(item.quantity) * Number(item.strainId.price) + "$"}
               </td>

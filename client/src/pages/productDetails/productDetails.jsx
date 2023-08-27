@@ -37,7 +37,6 @@ export default function ProductDetails(props) {
             <div className="details">
               <div>Name: {strain.name}</div>
               <div>Type: {strain.type}</div>
-              <div>Most Common Terpene: {strain.most_common_terpene}</div>
               <div>Thc Level: {strain.thcLevel}</div>
               <div>Price: {strain.price + "$"}</div>
               <div>ID: {strain._id}</div>

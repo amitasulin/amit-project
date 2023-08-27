@@ -10,7 +10,14 @@ export async function getAllUsers(queryParams) {
 export async function getUserById(userId) {
   // get and return a list of strains from our server
 
-  const response = http.get(`http://localhost:5000/api/users?${userId}`);
+  const response = http.get(`http://localhost:5000/api/users${userId}`);
+  return response;
+}
+
+export async function deleteUser(id) {
+  // get and return a list of strains from our server
+
+  const response = http.delete(`http://localhost:5000/api/users/${id}`);
   return response;
 }
 

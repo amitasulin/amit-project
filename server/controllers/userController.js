@@ -149,7 +149,7 @@ const getAllUsers = async (req, res, next) => {
 
 const getUserById = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id).select(-password);
+    const user = await User.findById(req.params.id);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -263,9 +263,7 @@ const updateUser = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
   try {
-    const deletedUser = await User.findByIdAndRemove(req.params.id).select(
-      "-password"
-    );
+    const deletedUser = await User.findByIdAndRemove(req.params.id);
 
     if (!deletedUser) {
       return res.status(404).json({ error: "User not found" });

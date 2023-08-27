@@ -2,6 +2,7 @@
   text-align: center;
   margin-top: 2rem;
   padding-bottom: 50px;
+
 }
 
 table {
@@ -22,4 +23,8 @@ th {
 
 tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+.poster{
+  width: 60px;
 }
