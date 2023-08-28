@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Col, Image } from "react-bootstrap";
 import HowToOrder from "./HowToOrder";
 import ProductSlider from "../components/ProductSlider/ProductSlider";
 import { p1, p2, p3 } from "../constants/home";
