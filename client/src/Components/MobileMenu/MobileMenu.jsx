@@ -71,10 +71,7 @@ function MobileMenu() {
               Cart
               <i style={{ marginLeft: "6px" }} className="bi bi-cart"></i>
             </Link>
-            <Link onClick={handleClose} to="/orders">
-              Orders
-              <i style={{ marginLeft: "6px" }} className="bi bi-list-check"></i>
-            </Link>
+
             <Link onClick={handleClose} to="/wishlist">
               Wishlist
               <i

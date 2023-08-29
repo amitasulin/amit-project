@@ -18,7 +18,6 @@ import Wishlist from "./pages/wishlist/wishlist";
 import { MobileMenu } from "./components/MobileMenu/MobileMenu";
 import AboutPage from "./pages/AboutPage";
 import Profile from "./pages/Profile";
-import OrdersPage from "./pages/OrdersPage";
 import ProductList from "./pages/productList/productList";
 import CreateEditProduct from "./pages/createEditProduct/createEditProduct";
 import ProductDetails from "./pages/productDetails/productDetails";
@@ -52,7 +51,6 @@ export default function Main() {
           <Route path="/newStrain" element={<CreateEditProduct />} />
           <Route path="/users" element={<Users />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contactus" element={<ContactUs />} />

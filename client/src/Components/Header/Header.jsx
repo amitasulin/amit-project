@@ -137,13 +137,7 @@ export default function Header() {
                 Cart
                 <i style={{ marginLeft: "6px" }} className="bi bi-cart"></i>
               </Link>
-              <Link to="/orders">
-                Orders
-                <i
-                  style={{ marginLeft: "6px" }}
-                  className="bi bi-list-check"
-                ></i>
-              </Link>
+
               <Link to="/wishlist">
                 Wishlist
                 <i

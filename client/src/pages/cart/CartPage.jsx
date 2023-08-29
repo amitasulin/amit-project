@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./cartPage.css";
-import { UserContext } from "../../context/userContext";
 import { getData } from "../../services/userService";
-
 function CartPage() {
   const [cart, setCart] = useState([]);
 
@@ -17,7 +15,7 @@ function CartPage() {
   }, []);
 
   return (
-    <div className="CartPage">
+    <div className="cartPage">
       <h1>Cart Page</h1>
       <table>
         <thead>

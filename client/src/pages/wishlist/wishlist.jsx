@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { toggleWishlist, addToCart, getData } from "../../services/userService";
+import "./wishlist.css";
 
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
