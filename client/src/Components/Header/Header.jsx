@@ -67,7 +67,7 @@ export default function Header() {
               className="d-flex d-lg-none"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
-              <span>☰</span>
+              <i class="bi bi-list"></i>
             </div>
           </div>
         </Col>
