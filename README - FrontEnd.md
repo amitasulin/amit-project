@@ -1,6 +1,6 @@
 # Amit Canabbis shop
 
-This is a Amit Canabbis shop application built with React. It allows users to browse and buy canabbis.
+This is a Amit Canabbis shop application built with React. It allows users to browse and buy cannabis.
 
 ## Features
 
