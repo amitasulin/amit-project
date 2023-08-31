@@ -41,7 +41,7 @@ This is a Amit Canabbis shop application built with React. It allows users to br
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/`
+1. Clone the repository: `git clone https://github.com/amitasulin/amit-project`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
 
