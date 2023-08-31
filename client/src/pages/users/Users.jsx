@@ -51,7 +51,14 @@ export default function Users() {
                         margin: "auto",
                         borderRadius: "100px",
                       }}
-                      onClick={() => deleteUser(user._id)}
+                      onClick={() => {
+                        try {
+                          deleteUser(user._id);
+                          toast.success("User deleted successfully");
+                        } catch (e) {
+                          toast.error("Failed to delete user");
+                        }
+                      }}
                     ></Button>
                   </td>
                 </tr>
