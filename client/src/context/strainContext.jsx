@@ -10,12 +10,14 @@ export const StrainProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchAllStrains = async ({ search = "", page = 1, filters }) => {
-    const response = await getAllStrains({ search, page, filters });
-    const strainsArray = response.data.data;
-    const totalPages = response.data.totalPages;
-    setStrains(strainsArray);
-    setPage(page);
-    setTotalPages(totalPages);
+    try {
+      const response = await getAllStrains({ search, page, filters });
+      const strainsArray = response.data.data;
+      const totalPages = response.data.totalPages;
+      setStrains(strainsArray);
+      setPage(page);
+      setTotalPages(totalPages);
+    } catch (e) {}
   };
 
   useEffect(() => {

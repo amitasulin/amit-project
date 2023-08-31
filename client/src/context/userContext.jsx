@@ -11,24 +11,26 @@ export const UserProvider = ({ children }) => {
   const userId = userData?.id;
 
   useEffect(() => {
-    const loadUserData = async () => {
-      const response = await getData();
-      if (response) {
-        setUserData(response.data);
-      } else {
-        setUserData(null);
-      }
-    };
-    const existingToken = Cookies.get("token");
+    try {
+      const loadUserData = async () => {
+        const response = await getData();
+        if (response) {
+          setUserData(response.data);
+        } else {
+          setUserData(null);
+        }
+      };
+      const existingToken = Cookies.get("token");
 
-    if (existingToken) {
-      const userPayload = jwtDecode(existingToken);
-      if (userPayload.id) {
+      if (existingToken) {
+        const userPayload = jwtDecode(existingToken);
+        if (userPayload.id) {
+          loadUserData();
+        }
+      } else if (userId) {
         loadUserData();
       }
-    } else if (userId) {
-      loadUserData();
-    }
+    } catch (e) {}
   }, [userId]);
 
   const signIn = async (email, password) => {
