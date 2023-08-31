@@ -55,9 +55,8 @@ export async function getData() {
   return response;
 }
 
-export async function sendMail(to, message) {
+export async function sendMail(message) {
   const response = http.post(`http://localhost:5000/api/users/sendMail/`, {
-    to,
     message,
   });
   return response;

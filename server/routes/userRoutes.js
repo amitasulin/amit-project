@@ -28,6 +28,6 @@ router.post("/wishlist/:strainId", authenticateUser, toggleWishlist);
 router.post("/cart", authenticateUser, addToCart);
 router.post("/cart/delete", authenticateUser, removeFromCart);
 
-router.post("/sendMail", authenticateUser, sendMail);
+router.post("/sendMail", sendMail);
 
 module.exports = router;

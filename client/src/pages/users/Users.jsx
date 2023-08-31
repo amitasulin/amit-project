@@ -37,42 +37,40 @@ export default function Users() {
 
   return (
     <ProtectedRoute allowedRoles={["admin"]}>
-      <MyContainer>
-        <Container style={{ paddingTop: "50px" }}>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Role</th>
+      <Container style={{ paddingTop: "50px" }}>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user._id}>
+                <td>{index + 1}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td style={{ width: "18rem" }}>
+                  <Button
+                    className="bi bi-trash3"
+                    style={{
+                      margin: "auto",
+                      borderRadius: "100px",
+                    }}
+                    onClick={() => onClickDelete(user._id)}
+                  ></Button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr key={user._id}>
-                  <td>{index + 1}</td>
-                  <td>{user.firstName}</td>
-                  <td>{user.lastName}</td>
-                  <td>{user.email}</td>
-                  <td>{user.role}</td>
-                  <td style={{ width: "18rem" }}>
-                    <Button
-                      className="bi bi-trash3"
-                      style={{
-                        margin: "auto",
-                        borderRadius: "100px",
-                      }}
-                      onClick={() => onClickDelete(user._id)}
-                    ></Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Container>
-      </MyContainer>
+            ))}
+          </tbody>
+        </Table>
+      </Container>
     </ProtectedRoute>
   );
 }

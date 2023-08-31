@@ -1,68 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { Card, Col, Container, ListGroup, Row } from "react-bootstrap";
-import { toggleWishlist, addToCart, getData } from "../../services/userService";
+import React, { useContext } from "react";
+import { Row } from "react-bootstrap";
 import "./wishlist.css";
+import { Product } from "../productList/Product";
+import { MyContainer } from "../../components/MyContainer";
+import { UserContext } from "../../context/userContext";
 
 export default function Wishlist() {
-  const [wishlist, setWishlist] = useState([]);
+  const { userData, setUserData } = useContext(UserContext);
 
-  const getUserData = async () => {
-    const response = await getData();
-    console.log(response.data);
-    setWishlist(response.data.wishlist);
-  };
+  const wishlist = userData?.wishlist;
+  const removeFromWishlist = (strainId) =>
+    setUserData({
+      ...userData,
+      wishlist: userData.wishlist.filter((str) => str._id !== strainId),
+    });
 
-  useEffect(() => {
-    getUserData();
-  }, []);
+  const addToWishlist = (strain) =>
+    setUserData({ ...userData, wishlist: [strain, ...userData.wishlist] });
 
   return (
-    <Container>
+    <MyContainer>
       <Row>
         <h1>Wishlist</h1>
-        {!wishlist
-          ? "Loading strains, please wait..."
-          : wishlist.map((strain) => (
-              <Col key={strain._id}>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={strain.img_url} />
-                  <Card.Body>
-                    <Card.Title>{strain.name}</Card.Title>
-                    <Card.Text
-                      style={{
-                        overflow: "hidden",
-                        height: "100px",
-                      }}
-                    >
-                      {strain.description}
-                    </Card.Text>
-                  </Card.Body>
-                  <ListGroup className="list-group-flush">
-                    <ListGroup.Item>{strain.price + "$"}</ListGroup.Item>
-                    <ListGroup.Item>{strain.type}</ListGroup.Item>
-                    <ListGroup.Item>{strain.thcLevel}</ListGroup.Item>
-                  </ListGroup>
-                  <Card.Body>
-                    <Card.Link href={`/strains/${strain._id}`}>
-                      More Info
-                    </Card.Link>
-                    <Card.Link
-                      style={{ cursor: "pointer" }}
-                      onClick={() => toggleWishlist(strain._id)}
-                    >
-                      Add to wishlist
-                    </Card.Link>
-                    <Card.Link
-                      style={{ cursor: "pointer" }}
-                      onClick={() => addToCart(strain._id, 1)}
-                    >
-                      Add to cart
-                    </Card.Link>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
+        {!wishlist?.length ? (
+          <div>Wishlist is empty</div>
+        ) : (
+          wishlist.map((strain) => (
+            <Product
+              addToWishlist={addToWishlist}
+              removeFromWishlist={removeFromWishlist}
+              isWishlist={true}
+              key={strain._id}
+              product={strain}
+            />
+          ))
+        )}
       </Row>
-    </Container>
+    </MyContainer>
   );
 }

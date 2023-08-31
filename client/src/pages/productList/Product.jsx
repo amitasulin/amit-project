@@ -7,7 +7,13 @@ import { UserContext } from "../../context/userContext";
 import { toast } from "react-toastify";
 import { StrainContext } from "../../context/strainContext";
 
-export const Product = ({ product, isPreview }) => {
+export const Product = ({
+  product,
+  isPreview,
+  isWishlist,
+  removeFromWishlist,
+  addToWishlist,
+}) => {
   const strain = product;
   const { userData } = useContext(UserContext);
   const { strains, setStrains } = useContext(StrainContext);
@@ -89,16 +95,25 @@ export const Product = ({ product, isPreview }) => {
           </Card.Link>
           <Card.Link
             style={{ cursor: "pointer" }}
-            onClick={() => {
+            onClick={async () => {
               try {
-                toggleWishlist(strain._id);
-                toast.success("Added a strain to the wishlist");
+                await toggleWishlist(strain._id);
+                if (isWishlist) {
+                  removeFromWishlist?.(strain._id);
+                  toast.success("Removed a strain from the wishlist");
+                } else {
+                  addToWishlist(strain);
+                  toast.success("Added a strain to the wishlist");
+                }
               } catch (e) {
+                console.log(e);
                 toast.error("Failed to add a strain to the wishlist");
               }
             }}
           >
-            <i className="bi bi-bag-check"> Add to wishlist</i>
+            <i className="bi bi-bag-check">
+              {isWishlist ? "Remove from" : "Add to"} wishlist
+            </i>
           </Card.Link>
           <Card.Link
             style={{ cursor: "pointer" }}

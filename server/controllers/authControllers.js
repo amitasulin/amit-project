@@ -49,8 +49,7 @@ const signUp = async (req, res) => {
 
     const payload = {
       id: newUser.id,
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
+      email,
     };
 
     const token = await generateToken(payload);
@@ -84,15 +83,14 @@ const signIn = async (req, res) => {
 
   try {
     // check if user exist in db
-    const user = await User.findOne({ email }).populate("wishlist");
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
     // compare passwords
-
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = bcrypt.compare(password, user.password);
 
     // the password is incorrect
     if (!isMatch) {
@@ -101,23 +99,18 @@ const signIn = async (req, res) => {
 
     const payload = {
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      role: user.role,
-      profilePicture: user.profilePicture,
-      wishlist: user.wishlist,
-      cart: user.cart,
-      email,
+      email: user.email,
     };
 
     const token = await generateToken(payload);
 
+    console.log(payload);
     res.cookie("token", token, {
       httpOnly: false,
       maxAge: AUTH_MAX_AGE,
     });
 
-    res.status(200).json(payload);
+    res.status(200).send();
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: "Cannot sign you in" });

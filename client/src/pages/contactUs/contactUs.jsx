@@ -56,7 +56,14 @@ function ContactUs() {
       setError(false);
 
       try {
-        await sendMail(email, message);
+        await sendMail({
+          name,
+          email,
+          message,
+          city,
+          zip,
+          checkbox,
+        });
         toast.success("Mail sent successfully");
       } catch (e) {
         toast.error("Mail sending error");
@@ -78,7 +85,7 @@ function ContactUs() {
             <Form.Control
               isInvalid={error}
               value={name}
-              onChange={(e) => console.log(e.currentTarget.value)}
+              onChange={(e) => setName(e.currentTarget.value)}
             />
           </Form.Group>
 

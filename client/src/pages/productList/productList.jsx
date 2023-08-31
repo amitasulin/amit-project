@@ -14,7 +14,7 @@ export default function ProductList() {
     useContext(StrainContext);
 
   const [showFilters, setShowFilters] = useState(false);
-  const { userData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
 
   const isAdmin = userData?.role === "admin";
   const items = [];
@@ -29,6 +29,15 @@ export default function ProductList() {
       </Pagination.Item>
     );
   }
+
+  const removeFromWishlist = (strainId) =>
+    setUserData({
+      ...userData,
+      wishlist: userData.wishlist.filter((str) => str._id !== strainId),
+    });
+
+  const addToWishlist = (strain) =>
+    setUserData({ ...userData, wishlist: [strain, ...userData.wishlist] });
 
   return (
     <MyContainer>
@@ -76,7 +85,15 @@ export default function ProductList() {
               {!strains
                 ? "Loading strains, please wait..."
                 : strains.map((strain) => (
-                    <Product key={strain._id} product={strain} />
+                    <Product
+                      addToWishlist={addToWishlist}
+                      removeFromWishlist={removeFromWishlist}
+                      isWishlist={userData?.wishlist?.find(
+                        (str) => str._id === strain._id
+                      )}
+                      key={strain._id}
+                      product={strain}
+                    />
                   ))}
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>

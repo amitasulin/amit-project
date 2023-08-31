@@ -13,18 +13,22 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendMail = async (req, res, next) => {
-  const { to, message } = req.body;
+  const { message } = req.body;
 
-  console.log(req.body);
   const mailOptions = {
     from: "amitcannabisshop@gmail.com",
-    to,
+    to: "amitasulin7@gmail.com",
     subject: "Mail from Amit`s cannabis shop",
-    text: { message },
+    text: JSON.stringify(message),
   };
 
-  /*   transporter.sendMail(mailOptions);
-   */
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).send();
+  } catch (e) {
+    console.log(e);
+    res.status(400).send();
+  }
 };
 
 const getData = async (req, res) => {
@@ -44,7 +48,6 @@ const getData = async (req, res) => {
       profilePicture: userFound.profilePicture,
       wishlist: userFound.wishlist,
       cart: userFound.cart,
-      email: userFound.email,
     };
 
     res.status(200).json(payload);
