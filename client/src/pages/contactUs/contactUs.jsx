@@ -32,14 +32,6 @@ function ContactUs() {
   const [checkbox, setCheckbox] = useState(false);
 
   const onSubmit = async () => {
-    console.log({
-      name,
-      email,
-      message,
-      city,
-      zip,
-      checkbox,
-    });
     const isValid = contactUsValidation.validate({
       name,
       email,

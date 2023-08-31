@@ -31,14 +31,19 @@ export const UserProvider = ({ children }) => {
     }
   }, [userId]);
 
-  console.log(userData);
-
   const signIn = async (email, password) => {
-    const response = await http.post("http://localhost:5000/api/auth/signin", {
-      email,
-      password,
-    });
-    setUserData({ ...userData, email });
+    try {
+      const response = await http.post(
+        "http://localhost:5000/api/auth/signin",
+        {
+          email,
+          password,
+        }
+      );
+      setUserData({ ...userData, id: 0 });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const signOut = async () => {
@@ -47,13 +52,20 @@ export const UserProvider = ({ children }) => {
   };
 
   const signUp = async ({ email, password, firstName, lastName }) => {
-    const response = await http.post("http://localhost:5000/api/auth/signup", {
-      firstName,
-      lastName,
-      email,
-      password,
-    });
-    setUserData({ ...userData, email });
+    try {
+      const response = await http.post(
+        "http://localhost:5000/api/auth/signup",
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+        }
+      );
+      setUserData({ ...userData, id: 0 });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

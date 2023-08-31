@@ -104,7 +104,6 @@ const signIn = async (req, res) => {
 
     const token = await generateToken(payload);
 
-    console.log(payload);
     res.cookie("token", token, {
       httpOnly: false,
       maxAge: AUTH_MAX_AGE,
