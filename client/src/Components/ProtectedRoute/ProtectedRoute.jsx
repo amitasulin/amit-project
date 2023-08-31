@@ -3,6 +3,7 @@ import React from "react";
 import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { MyContainer } from "../MyContainer";
 
 export default function ProtectedRoute(props) {
   const { allowedRoles } = props;
@@ -12,9 +13,9 @@ export default function ProtectedRoute(props) {
     <React.Fragment>
       <p>You have to be logged in to view this content</p>
 
-      <div>
+      <p>
         Click <Link to="/signin"> here </Link> to login.{" "}
-      </div>
+      </p>
     </React.Fragment>
   );
 
@@ -48,5 +49,11 @@ export default function ProtectedRoute(props) {
       return notAllowed;
     }
   };
-  return <React.Fragment>{result()}</React.Fragment>;
+  return (
+    <MyContainer>
+      <div className="d-flex flex-column justify-content-center">
+        {result()}
+      </div>
+    </MyContainer>
+  );
 }

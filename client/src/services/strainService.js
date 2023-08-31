@@ -31,7 +31,7 @@ export async function deleteStrain(id) {
 
 export async function updateStrain(params) {
   // get a strain by id from the server
-
+  console.log(params);
   const response = http.put(
     `http://localhost:5000/api/strains/${params._id}`,
     params

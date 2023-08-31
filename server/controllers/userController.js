@@ -55,14 +55,10 @@ const getData = async (req, res) => {
 
 const addToCart = async (req, res, next) => {
   const params = req.body;
-
-  console.log(params);
   const quantity = params.quantity;
   const strainId = params.strainId;
 
   const user = req.user;
-
-  console.log(user);
 
   const userFound = await User.findById(user.id);
 
@@ -76,7 +72,7 @@ const addToCart = async (req, res, next) => {
 };
 
 const removeFromCart = async (req, res, next) => {
-  const params = req.params;
+  const params = req.body;
 
   const quantity = params.quantity;
   const strainId = params.strainId;
@@ -87,15 +83,16 @@ const removeFromCart = async (req, res, next) => {
 
   const cart = userFound.cart;
 
-  const foundItemIdx = cart.findIndex((item) => item.id === strainId);
-
+  const foundItemIdx = cart.findIndex((item) =>
+    item.strainId._id.equals(strainId)
+  );
   if (foundItemIdx !== -1) {
+    let newCart = [...cart];
     const foundItem = cart[foundItemIdx];
     if (foundItem.quantity - quantity <= 0) {
-      let newCart = cart.filter((item) => item.strainId === strainId);
+      newCart.splice(foundItemIdx, 1);
       userFound.cart = newCart;
     } else {
-      let newCart = [...cart];
       newCart[foundItemIdx].quantity -= quantity;
       userFound.cart = newCart;
     }

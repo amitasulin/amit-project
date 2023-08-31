@@ -2,7 +2,6 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import "./contactUs.css";
 import { MyContainer } from "../../components/MyContainer";
 import Joi from "joi";
 import { useState } from "react";
@@ -18,6 +17,7 @@ const contactUsValidation = Joi.object({
   message: Joi.string().min(2).max(1024).required(),
   city: Joi.string().min(2).max(20),
   zip: Joi.number(),
+  checkbox: true,
 }).options({ allowUnknown: true });
 
 function ContactUs() {
@@ -27,87 +27,122 @@ function ContactUs() {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
 
+  const [error, setError] = useState(false);
+
+  const [checkbox, setCheckbox] = useState(false);
+
+  const onSubmit = async () => {
+    console.log({
+      name,
+      email,
+      message,
+      city,
+      zip,
+      checkbox,
+    });
+    const isValid = contactUsValidation.validate({
+      name,
+      email,
+      message,
+      city,
+      zip,
+      checkbox,
+    });
+
+    if (isValid.error) {
+      setError(true);
+      toast.error("Form validation failed");
+    } else {
+      setError(false);
+
+      try {
+        await sendMail(email, message);
+        toast.success("Mail sent successfully");
+      } catch (e) {
+        toast.error("Mail sending error");
+      }
+    }
+  };
+
   return (
     <MyContainer>
-      <Form style={{ maxWidth: 400 }} className="m-auto">
+      <Form
+        style={{ maxWidth: 400, padding: 20 }}
+        className="m-auto d-flex flex-column justify-content-center align-items-center"
+      >
         <img className="img-fluid" src={img} alt="logo" />
 
-        <Form.Group>
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control
-            value={name}
-            onChange={(e) => setName(e.currentTarget.target)}
-          />
-        </Form.Group>
+        <div className="row">
+          <Form.Group className="mb-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              isInvalid={error}
+              value={name}
+              onChange={(e) => console.log(e.currentTarget.value)}
+            />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.target)}
-          />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              isInvalid={error}
+              value={email}
+              onChange={(e) => setEmail(e.currentTarget.value)}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Your Message</Form.Label>
-          <Form.Control
-            value={message}
-            onChange={(e) => setMessage(e.currentTarget.target)}
-            style={{ maxHeight: 200 }}
-            as="textarea"
-          />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Your Message</Form.Label>
+            <Form.Control
+              isInvalid={error}
+              value={message}
+              onChange={(e) => setMessage(e.currentTarget.value)}
+              style={{ maxHeight: 200 }}
+              as="textarea"
+            />
+          </Form.Group>
 
-        <Row className="mb-3">
-          <Form.Group as={Col}>
+          <Form.Group className="col-12 col-md-6 mb-3">
             <Form.Label>City</Form.Label>
             <Form.Control
+              isInvalid={error}
               value={city}
-              onChange={(e) => setCity(e.currentTarget.target)}
+              onChange={(e) => setCity(e.currentTarget.value)}
             />
           </Form.Group>
 
-          <Form.Group as={Col}>
+          <Form.Group className="col-12 col-md-6 mb-3">
             <Form.Label>Zip</Form.Label>
             <Form.Control
+              isInvalid={error}
               value={zip}
-              onChange={(e) => setZip(e.currentTarget.target)}
+              onChange={(e) => setZip(e.currentTarget.value)}
             />
           </Form.Group>
-        </Row>
 
-        <Form.Group className="mb-3 d-flex justify-content-center">
-          <Form.Check type="checkbox" label="I am a human" />
-        </Form.Group>
+          <Form.Group className="mb-3 d-flex justify-content-center">
+            <Form.Check
+              isInvalid={error}
+              value={checkbox}
+              onChange={() => setCheckbox(!checkbox)}
+              type="checkbox"
+              label="I am a human"
+            />
+          </Form.Group>
 
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            const isValid = contactUsValidation.validate({
-              name,
-              email,
-              message,
-              city,
-              zip,
-            });
-
-            if (!isValid) {
-              toast.error("Form validation failed");
-            } else {
-              try {
-                console.log(email, message);
-                sendMail(email, message);
-                toast.success("Mail sent successfully");
-              } catch (e) {
-                toast.error("Mail sending error");
-              }
-            }
-          }}
-          variant="primary"
-          type="submit"
-        >
-          Submit
-        </Button>
+          <div>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                onSubmit();
+              }}
+              variant="primary"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
+        </div>
       </Form>
     </MyContainer>
   );

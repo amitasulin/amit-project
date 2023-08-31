@@ -67,7 +67,7 @@ export default function Header() {
               className="d-flex d-lg-none"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
-              <i class="bi bi-list"></i>
+              <i className="bi bi-list"></i>
             </div>
           </div>
         </Col>
@@ -97,7 +97,7 @@ export default function Header() {
           style={{
             margin: "auto 20px",
             maxWidth: "450px",
-            minWidth: "300px",
+            minWidth: "200px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

@@ -43,7 +43,7 @@ export async function addToCart(strainId, quantity) {
 export async function removeFromCart(strainId, quantity) {
   // get and return a list of strains from our server
 
-  const response = http.delete(`http://localhost:5000/api/users/cart/`, {
+  const response = http.post(`http://localhost:5000/api/users/cart/delete`, {
     strainId,
     quantity,
   });

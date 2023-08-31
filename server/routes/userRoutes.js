@@ -26,7 +26,7 @@ router.delete("/:id", authenticateUser, authorizeUser(["admin"]), deleteUser);
 
 router.post("/wishlist/:strainId", authenticateUser, toggleWishlist);
 router.post("/cart", authenticateUser, addToCart);
-router.delete("/cart", authenticateUser, removeFromCart);
+router.post("/cart/delete", authenticateUser, removeFromCart);
 
 router.post("/sendMail", authenticateUser, sendMail);
 

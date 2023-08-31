@@ -1,8 +1,8 @@
 import { useContext } from "react";
-
+import "./MobileMenu.css";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { AppContext } from "../../context/appContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { Button } from "react-bootstrap";
 import logo from "../../assets/608dbc866bdc4afcb272cb70110c9015.png";
@@ -10,17 +10,20 @@ import logo from "../../assets/608dbc866bdc4afcb272cb70110c9015.png";
 function MobileMenu() {
   const { showMobileMenu, setShowMobileMenu } = useContext(AppContext);
   const { isLoggedIn } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const handleClose = () => setShowMobileMenu(false);
+  const handleClick = (path = "/") => {
+    navigate(path);
+    setShowMobileMenu(false);
+  };
   const { userData, signOut } = useContext(UserContext);
 
-  const navigate = useNavigate();
   return (
     <>
       <Offcanvas
-        style={{ backgroundColor: " #26a550" }}
+        style={{ backgroundColor: " #26a550", opacity: 0.9 }}
         show={showMobileMenu}
-        onHide={handleClose}
+        onHide={() => setShowMobileMenu(false)}
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title> Menu</Offcanvas.Title>
@@ -36,63 +39,77 @@ function MobileMenu() {
             style={{
               display: "flex",
               flexDirection: "column",
+              fontSize: 24,
             }}
           >
-            <Link onClick={handleClose} to="/">
+            <div className="menuItem" onClick={() => handleClick("/")}>
               Home
-            </Link>
-            <Link onClick={handleClose} to="/strains">
+            </div>
+            <div className="menuItem" onClick={() => handleClick("/strains")}>
               Products
-            </Link>
-            <Link onClick={handleClose} to="/users">
-              Users
-            </Link>
+            </div>
 
-            <Link onClick={handleClose} to="/about">
+            {isLoggedIn ? (
+              <div className="menuItem" onClick={() => handleClick("/users")}>
+                Users
+              </div>
+            ) : null}
+
+            <div className="menuItem" onClick={() => handleClick("/about")}>
               About Us
-            </Link>
+            </div>
 
-            <Link onClick={handleClose} to="/contactus">
+            <div className="menuItem" onClick={() => handleClick("/contactus")}>
               Contact Us
-            </Link>
+            </div>
             {isLoggedIn ? null : (
-              <Link onClick={handleClose} to="/signin">
+              <div className="menuItem" onClick={() => handleClick("/signin")}>
                 Sign In
-              </Link>
+              </div>
             )}
-            <Link onClick={handleClose} to="/profile">
-              {userData?.firstName}
-              <i
-                style={{ marginLeft: "6px" }}
-                className="bi bi-person-circle"
-              ></i>
-            </Link>
-            <Link onClick={handleClose} to="/cart">
-              Cart
-              <i style={{ marginLeft: "6px" }} className="bi bi-cart"></i>
-            </Link>
+            {userData?.firstName ? (
+              <div className="menuItem" onClick={() => handleClick("/profile")}>
+                {userData.firstName}
+                <i
+                  style={{ marginLeft: "6px" }}
+                  className="bi bi-person-circle"
+                ></i>
+              </div>
+            ) : null}
+            {isLoggedIn ? (
+              <>
+                <div className="menuItem" onClick={() => handleClick("/cart")}>
+                  Cart
+                  <i style={{ marginLeft: "6px" }} className="bi bi-cart"></i>
+                </div>
 
-            <Link onClick={handleClose} to="/wishlist">
-              Wishlist
-              <i
-                style={{ marginLeft: "6px" }}
-                className="bi bi-person-lines-fill"
-              ></i>
-            </Link>
-            <Button
-              onClick={() => {
-                handleClose();
-                signOut();
-                navigate("/");
-              }}
-              variant="danger"
-            >
-              Sign out
-              <i
-                style={{ marginLeft: "6px" }}
-                className="bi bi-box-arrow-in-right"
-              ></i>
-            </Button>
+                <div
+                  className="menuItem"
+                  onClick={() => handleClick("/wishlist")}
+                >
+                  Wishlist
+                  <i
+                    style={{ marginLeft: "6px" }}
+                    className="bi bi-person-lines-fill"
+                  ></i>
+                </div>
+                <div>
+                  <Button
+                    onClick={() => {
+                      signOut();
+                      handleClick("/");
+                    }}
+                    variant="danger"
+                  >
+                    Sign out
+                    <i
+                      style={{ marginLeft: "6px" }}
+                      className="bi bi-box-arrow-in-right"
+                    ></i>
+                  </Button>
+                </div>
+              </>
+            ) : null}
           </div>
         </Offcanvas.Body>
       </Offcanvas>

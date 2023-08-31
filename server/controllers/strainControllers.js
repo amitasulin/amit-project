@@ -39,12 +39,12 @@ const getAll = async (req, res, next) => {
 
     const prices = price.split(",");
     const priceFilter = {
-      price: { $gte: prices[0] || 0, $lte: prices[1] || 100 },
+      price: { $gte: Number(prices[0]) || 0, $lte: Number(prices[1]) || 100 },
     };
 
     const thcs = thc.split(",");
     const thcFilter = {
-      thcLevel: { $gte: thcs[0] || 0, $lte: thcs[1] || 100 },
+      thcLevel: { $gte: Number(thcs[0]) || 0, $lte: Number(thcs[1]) || 100 },
     };
 
     const strains = await Strain.paginate(

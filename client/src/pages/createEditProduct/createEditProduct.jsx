@@ -44,12 +44,12 @@ export default function CreateEditProduct() {
   const addNewStrain = async () => {
     const { error } = strainValidation.validate(product);
     if (error) {
-      console.log(error);
       toast.error(`Failed to validate a new strain`);
     } else {
       try {
-        addStrain(product);
-        const newStrains = [product, ...strains];
+        const response = await addStrain(product);
+        const created = response.data.created;
+        const newStrains = [created, ...strains];
         setStrains(newStrains);
         navigate("/strains");
         toast.success(`${product.name} has been added successfully!`);
@@ -60,7 +60,6 @@ export default function CreateEditProduct() {
   };
 
   const updateExistStrain = async () => {
-    console.log(product);
     const { error } = strainValidation.validate(product);
     if (error) {
       console.log(error);
@@ -69,7 +68,7 @@ export default function CreateEditProduct() {
     } else {
       try {
         //updates server
-        updateStrain(product);
+        await updateStrain(product);
 
         //updates context (memory)
         const strainIndex = strains.findIndex((str) => str._id === product._id);
@@ -104,7 +103,7 @@ export default function CreateEditProduct() {
 
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {product.type.to || "Select type"}
+              {product.type || "Select type"}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

@@ -5,11 +5,26 @@ import { toggleWishlist, addToCart } from "../../services/userService";
 import { deleteStrain } from "../../services/strainService";
 import { UserContext } from "../../context/userContext";
 import { toast } from "react-toastify";
+import { StrainContext } from "../../context/strainContext";
 
 export const Product = ({ product, isPreview }) => {
   const strain = product;
   const { userData } = useContext(UserContext);
+  const { strains, setStrains } = useContext(StrainContext);
   const navigate = useNavigate();
+
+  const onClickDelete = async (strainId) => {
+    try {
+      await deleteStrain(strainId);
+      const strainIdx = strains.findIndex((strn) => strn._id === strainId);
+      const newStrains = [...strains];
+      newStrains.splice(strainIdx, 1);
+      setStrains(newStrains);
+      toast.success("Cart row deleted successfully");
+    } catch (e) {
+      toast.error("Failed to delete cart row");
+    }
+  };
 
   const isAdmin = userData?.role === "admin";
 
@@ -33,7 +48,7 @@ export const Product = ({ product, isPreview }) => {
                 margin: "auto",
                 borderRadius: "100px",
               }}
-              onClick={() => deleteStrain(strain._id)}
+              onClick={() => onClickDelete(strain._id)}
             >
               <i className="bi bi-trash3"></i>
             </Button>

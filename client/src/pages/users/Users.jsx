@@ -18,6 +18,19 @@ export default function Users() {
     }
   };
 
+  const onClickDelete = async (userId) => {
+    try {
+      await deleteUser(userId);
+      const deletedUserIdx = users.findIndex((usr) => usr._id === userId);
+      const newUsers = [...users];
+      newUsers.splice(deletedUserIdx, 1);
+      setUsers(newUsers);
+      toast.success("User deleted successfully");
+    } catch (e) {
+      toast.error("Failed to delete user");
+    }
+  };
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -51,14 +64,7 @@ export default function Users() {
                         margin: "auto",
                         borderRadius: "100px",
                       }}
-                      onClick={() => {
-                        try {
-                          deleteUser(user._id);
-                          toast.success("User deleted successfully");
-                        } catch (e) {
-                          toast.error("Failed to delete user");
-                        }
-                      }}
+                      onClick={() => onClickDelete(user._id)}
                     ></Button>
                   </td>
                 </tr>
